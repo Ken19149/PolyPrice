@@ -4,25 +4,24 @@ from bs4 import BeautifulSoup
 from deep_translator import GoogleTranslator
 import urllib.parse
 import pandas as pd
-import time
+from concurrent.futures import ThreadPoolExecutor
 
 def translate_to_jp(keyword):
     print(f"[*] Translating '{keyword}' to Japanese...")
-    # GoogleTranslator is free and doesn't require an API key
     translated = GoogleTranslator(source='en', target='ja').translate(keyword)
     print(f"[*] Translation result: {translated}")
     return translated
 
 def fetch_amazon_jp_html(keyword, page_number=1):
     safe_keyword = urllib.parse.quote(keyword)
-    # Added the page parameter to the URL
     url = f"https://www.amazon.co.jp/s?k={safe_keyword}&page={page_number}"
     
-    print(f"[*] Launching Playwright to scrape Page {page_number}: {url}")
+    print(f"[Thread-{page_number}] Launching Playwright to scrape: {url}")
     
     with sync_playwright() as p:
+        # HEADLESS IS NOW TRUE: No visual windows, pure background speed.
         browser = p.chromium.launch(
-            headless=False,
+            headless=True,
             args=[
                 "--disable-blink-features=AutomationControlled", 
                 "--disable-popup-blocking",
@@ -51,68 +50,72 @@ def fetch_amazon_jp_html(keyword, page_number=1):
         html = page.content()
         browser.close()
         
+        print(f"[Thread-{page_number}] HTML extraction complete.")
         return html
 
-def parse_amazon_data(html):
-    print("[*] Parsing HTML with BeautifulSoup...")
+def parse_amazon_data(html, page_number):
     soup = BeautifulSoup(html, 'html.parser')
     results = []
-    
-    # Find all product containers on the page
     items = soup.find_all('div', attrs={'data-component-type': 's-search-result'})
     
     for item in items:
-        # 1. Extract the Title
         title_tag = item.find('h2')
         if not title_tag:
             continue
         title = title_tag.text.strip()
         
-        # 2. Extract the Link (Search the whole 'item' container, not just 'title_tag')
         link_tag = item.find('a', class_='a-link-normal', href=True)
         link = "https://www.amazon.co.jp" + link_tag['href'] if link_tag else "N/A"
         
-        # 3. Extract the Price (With a fallback for alternate layouts)
         price_tag = item.find('span', class_='a-offscreen')
-        if not price_tag: # Fallback if the first class isn't found
+        if not price_tag:
             price_tag = item.find('span', class_='a-price-whole')
             
         price = price_tag.text.strip() if price_tag else "No Price Listed"
         
-        # Save it to our dictionary
         results.append({
             'Platform': 'Amazon JP',
             'Title': title,
             'Price': price,
             'URL': link
-        }) 
+        })
         
-    print(f"[*] Successfully parsed {len(results)} products.")
+    print(f"[Thread-{page_number}] Successfully parsed {len(results)} products.")
     return results
 
 if __name__ == "__main__":
     jp_keyword = translate_to_jp("mechanical keyboard")
-    
-    # Create a master list to hold data from all pages
     all_parsed_data = []
     
-    # Loop through pages 1, 2, and 3
-    for current_page in range(1, 4):
-        raw_html = fetch_amazon_jp_html(jp_keyword, current_page)
-        page_data = parse_amazon_data(raw_html)
-        
-        # Add the new page's data to our master list
-        all_parsed_data.extend(page_data)
-        
-        # Be polite to the server: wait 3 seconds before hitting the next page
-        if current_page < 3:
-            print("[*] Resting for 3 seconds to avoid rate limits...")
-            time.sleep(3)
+    # Define how many pages we want to scrape simultaneously
+    pages_to_scrape = list(range(1,18))
     
+    print(f"\n[*] Firing up {len(pages_to_scrape)} concurrent browsers...\n")
+    
+    # ThreadPoolExecutor manages our concurrent threads
+    # max_workers=5 means it will run exactly 5 instances of the fetch function at the same time
+    with ThreadPoolExecutor(max_workers=5) as executor:
+        # We create a dictionary to keep track of which thread is processing which page
+        future_to_page = {
+            executor.submit(fetch_amazon_jp_html, jp_keyword, page): page 
+            for page in pages_to_scrape
+        }
+        
+        # As each thread finishes its job, we collect the raw HTML and parse it
+        for future in future_to_page:
+            page_num = future_to_page[future]
+            try:
+                raw_html = future.result()
+                page_data = parse_amazon_data(raw_html, page_num)
+                all_parsed_data.extend(page_data)
+            except Exception as exc:
+                print(f"[!] Thread for Page {page_num} generated an exception: {exc}")
+
+    # Exporting the combined data
     if all_parsed_data:
-        print(f"[*] Exporting {len(all_parsed_data)} total products to PolyPrice_Results.csv...")
+        print(f"\n[*] Boom. Exporting {len(all_parsed_data)} total products to PolyPrice_Results.csv...")
         df = pd.DataFrame(all_parsed_data)
         df.to_csv('PolyPrice_Results.csv', index=False, encoding='utf-8-sig')
         print("[*] Success! Check your project folder.")
     else:
-        print("[!] No data parsed to export.")
+        print("\n[!] No data parsed to export.")

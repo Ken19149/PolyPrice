@@ -1,52 +1,52 @@
 # PolyPrice: Multilingual E-Commerce Scraper & Normalizer
 
-PolyPrice is an automated Python utility designed to navigate, extract, and normalize product data across complex Asian e-commerce platforms (Shopee, AliExpress, Amazon JP).
+PolyPrice is an automated Python utility designed to navigate, extract, and normalize product data across complex international e-commerce platforms (Amazon JP, Shopee). 
+
+Built to handle the intricacies of modern web scraping, this tool bypasses enterprise anti-bot defenses, auto-translates search queries, and outputs clean, client-ready data.
 
 ## 🎯 The Problem
 
-Western clients frequently require pricing parity data across Asian markets. However, extracting this data is difficult due to:
+Clients frequently require pricing parity data across Asian markets, but extracting this data programmatically presents significant challenges:
 
-1. **Language Barriers:** Keyword searches must be localized (e.g., "Mechanical Keyboard" to "メカニカルキーボード").
-2. **Dynamic Rendering:** Modern e-commerce sites rely heavily on JavaScript, rendering standard HTTP requests (like `requests` or `curl`) useless.
-3. **Currency Fragmentation:** Output data is scattered across different currencies and formats.
+1. **Enterprise Anti-Bot Firewalls:** Platforms use advanced TLS fingerprinting, canvas rendering checks, and behavioral analysis to block automated scripts.
+2. **Language Barriers:** Keyword searches must be accurately localized (e.g., "Mechanical Keyboard" to "メカニカルキーボード").
+3. **Dynamic Rendering:** Modern e-commerce sites rely heavily on JavaScript lazy-loading, rendering standard HTTP requests (`requests`/`curl`) ineffective.
 
-## 🛠️ The Solution (PolyPrice)
+## 🛠️ The Solution (PolyPrice Architecture)
 
-This script utilizes **Playwright** as a headless browser to execute JavaScript and bypass basic bot-protection, **BeautifulSoup4** to parse the rendered DOM, and **Pandas** to output normalized, client-ready data.
+PolyPrice utilizes **Playwright** paired with advanced stealth injections to emulate genuine human browsing behavior. 
 
 ### Core Features
 
-* **Auto-Translation:** Translates English search inputs into target regional languages (TH, JP, CN).
-* **Headless Execution:** Silently navigates complex DOM structures to extract Product Titles, Prices, and URLs.
-* **Currency Normalization:** Standardizes disparate currencies into a single comparative format (e.g., USD).
-* **Client-Ready Output:** Exports cleanly to CSV/JSON.
+* **Anti-Bot Evasion:** Implements `playwright-stealth` to strip automation flags, spoof hardware concurrency, and mimic human interaction patterns (scrolling, viewport resizing).
+* **Auto-Translation Layer:** Leverages `deep-translator` to dynamically convert English search inputs into target regional languages before execution.
+* **Intelligent Pagination:** Programmatically constructs URLs to recursively scrape deep into search results without relying on fragile DOM click events.
+* **Robust Parsing:** Utilizes `BeautifulSoup4` with fallback selectors to handle inconsistent HTML structures (e.g., handling missing prices or variable tag wrapping).
+* **Normalized Output:** Exports disparate currency and string formats into a standardized Pandas DataFrame for CSV/JSON export.
 
 ## 💻 Tech Stack
 
 * **Language:** Python 3.x
-* **Browser Automation:** Playwright
+* **Browser Automation:** Playwright (Chromium)
 * **Parsing:** BeautifulSoup4
 * **Data Manipulation:** Pandas
-* **Development Environment:** Neovim on Arch Linux
+* **Translation:** Deep Translator
+* **Environment:** Built and tested on Arch Linux
 
 ## 🚀 Quick Start
 
 ```bash
 # Clone the repository
 git clone [https://github.com/yourusername/PolyPrice.git](https://github.com/yourusername/PolyPrice.git)
-
-# Navigate to the directory
 cd PolyPrice
 
-# Set up a virtual environment (Recommended)
-python -m venv venv
-source venv/bin/activate
+# Set up a virtual environment 
+python -m venv .venv
+source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
-
-# Install Playwright browsers
-playwright install
+playwright install chromium
 
 # Run the scraper
-python main.py --query "mechanical keyboard"
+python main.py
