@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from deep_translator import GoogleTranslator
 import urllib.parse
 import pandas as pd
+import time
 
 def translate_to_jp(keyword):
     print(f"[*] Translating '{keyword}' to Japanese...")
@@ -12,11 +13,12 @@ def translate_to_jp(keyword):
     print(f"[*] Translation result: {translated}")
     return translated
 
-def fetch_amazon_jp_html(keyword):
+def fetch_amazon_jp_html(keyword, page_number=1):
     safe_keyword = urllib.parse.quote(keyword)
-    url = f"https://www.amazon.co.jp/s?k={safe_keyword}"
+    # Added the page parameter to the URL
+    url = f"https://www.amazon.co.jp/s?k={safe_keyword}&page={page_number}"
     
-    print(f"[*] Launching Playwright to scrape: {url}")
+    print(f"[*] Launching Playwright to scrape Page {page_number}: {url}")
     
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -29,7 +31,6 @@ def fetch_amazon_jp_html(keyword):
             ignore_default_args=["--enable-automation"] 
         )
         
-        # Switched locale and timezone to match Tokyo
         context = browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
             locale="ja-JP",
@@ -39,17 +40,11 @@ def fetch_amazon_jp_html(keyword):
         
         Stealth().apply_stealth_sync(context)
         page = context.new_page()
-        
         page.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
         
-        print("[*] Navigating to Amazon Japan...")
         page.goto(url)
+        page.wait_for_timeout(5000) 
         
-        # Amazon sometimes throws a visual CAPTCHA (type the letters). 
-        # Since headless=False, if you see it, just type it in manually within this 10-second window!
-        page.wait_for_timeout(10000) 
-        
-        # Scroll to load all product images and prices
         page.mouse.wheel(0, 1500)
         page.wait_for_timeout(2000)
         
@@ -97,13 +92,26 @@ def parse_amazon_data(html):
 
 if __name__ == "__main__":
     jp_keyword = translate_to_jp("mechanical keyboard")
-    raw_html = fetch_amazon_jp_html(jp_keyword)
-    parsed_data = parse_amazon_data(raw_html)
     
-    # Exporting to CSV using Pandas
-    if parsed_data:
-        print("[*] Exporting data to PolyPrice_Results.csv...")
-        df = pd.DataFrame(parsed_data)
+    # Create a master list to hold data from all pages
+    all_parsed_data = []
+    
+    # Loop through pages 1, 2, and 3
+    for current_page in range(1, 4):
+        raw_html = fetch_amazon_jp_html(jp_keyword, current_page)
+        page_data = parse_amazon_data(raw_html)
+        
+        # Add the new page's data to our master list
+        all_parsed_data.extend(page_data)
+        
+        # Be polite to the server: wait 3 seconds before hitting the next page
+        if current_page < 3:
+            print("[*] Resting for 3 seconds to avoid rate limits...")
+            time.sleep(3)
+    
+    if all_parsed_data:
+        print(f"[*] Exporting {len(all_parsed_data)} total products to PolyPrice_Results.csv...")
+        df = pd.DataFrame(all_parsed_data)
         df.to_csv('PolyPrice_Results.csv', index=False, encoding='utf-8-sig')
         print("[*] Success! Check your project folder.")
     else:
