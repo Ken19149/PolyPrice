@@ -9,6 +9,7 @@ from playwright_stealth import Stealth
 import json
 import ollama
 import time
+import re  # Added for ASIN extraction
 
 def generate_wide_keywords(base_keyword):
     """Generates specific variations of a keyword to bypass pagination limits."""
@@ -75,14 +76,29 @@ def parse_amazon_data(html, keyword, page_number):
                 text_content = text_content[:300] + "..."
                 
             link_tag = item.find('a', class_='a-link-normal', href=True)
-            link = "https://www.amazon.co.jp" + link_tag['href'] if link_tag else "N/A"
+            raw_link = "https://www.amazon.co.jp" + link_tag['href'] if link_tag else ""
             
-            if '?' in link:
-                link = link.split('?')[0]
-            if '/ref=' in link:
-                link = link.split('/ref=')[0]
+            # --- ASIN REGEX STERILIZATION ---
+            clean_link = "N/A"
+            if raw_link:
+                # 1. Unpack hidden sponsored ad URLs
+                if "sspa/click" in raw_link:
+                    parsed = urllib.parse.urlparse(raw_link)
+                    qs = urllib.parse.parse_qs(parsed.query)
+                    if 'url' in qs:
+                        raw_link = urllib.parse.unquote(qs['url'][0])
+                        if not raw_link.startswith("http"):
+                            raw_link = "https://www.amazon.co.jp" + raw_link
                 
-            structured_text_input += f"Item {idx+1}:\nText: {text_content}\nLink: {link}\n\n"
+                # 2. Extract the exact 10-character Amazon ASIN
+                asin_match = re.search(r'/(?:dp|gp/product|exec/obidos/ASIN|o/ASIN)/([A-Z0-9]{10})', raw_link)
+                if asin_match:
+                    clean_link = f"https://www.amazon.co.jp/dp/{asin_match.group(1)}"
+                else:
+                    # Fallback if no ASIN is found
+                    clean_link = raw_link.split('?')[0].split('/ref=')[0]
+                
+            structured_text_input += f"Item {idx+1}:\nText: {text_content}\nLink: {clean_link}\n\n"
 
         prompt = f"""
         You are an expert data parsing engine. Read the numbered items below.
@@ -119,19 +135,15 @@ def parse_amazon_data(html, keyword, page_number):
             
             # --- AI HALLUCINATION FLATTENING ---
             if isinstance(extracted_data, dict):
-                # Handle {"items": [{}, {}]} hallucination
                 for key, value in extracted_data.items():
                     if isinstance(value, list):
                         extracted_data = value
                         break
-                
-                # Handle {"Item 1": {}, "Item 2": {}} hallucination
                 if isinstance(extracted_data, dict):
                     extracted_data = list(extracted_data.values())
                         
             # --- STRICT PANDAS FIREWALL ---
             if isinstance(extracted_data, list):
-                # Forcefully reject any list items that are NOT dictionaries (e.g. strings or empty arrays)
                 valid_items = [item for item in extracted_data if isinstance(item, dict)]
                 all_extracted_items_for_page.extend(valid_items)
             
@@ -200,7 +212,6 @@ if __name__ == "__main__":
                 page_data = parse_amazon_data(raw_html, jp_kw, page_num)
                 all_parsed_data.extend(page_data)
                 
-                # --- PROGRESS CALCULATION BLOCK ---
                 elapsed_compute = time.time() - compute_start
                 avg_time_per_page = elapsed_compute / idx
                 eta_seconds = (total_pages - idx) * avg_time_per_page
@@ -221,11 +232,9 @@ if __name__ == "__main__":
         print(f"\n[!] Unexpected pipeline loop crash: {e}")
         
     finally:
-        # The Final Recovery Net
         if all_parsed_data:
             print(f"\n[*] Launching recovery dump blocks...")
             
-            # Additional safety check right before DataFrame creation
             clean_data = [item for item in all_parsed_data if isinstance(item, dict)]
             
             if clean_data:
