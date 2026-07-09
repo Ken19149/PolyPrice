@@ -12,35 +12,40 @@ import time
 import re
 
 def generate_dynamic_modifiers(base_keyword):
-    """Uses Qwen 2.5 to autonomously generate category-specific search modifiers."""
     print(f"[*] Asking Qwen 2.5 to generate dynamic search modifiers for '{base_keyword}'...")
     prompt = f"""
-    You are an e-commerce SEO engine. Generate a JSON array of exactly 5 single-word or short search modifiers for the product: "{base_keyword}".
-    Return ONLY a raw, valid JSON array of strings. Do not include markdown formatting.
-    Example for 'keyboard': ["wireless", "gaming", "mechanical", "budget", "ergonomic"]
-    Example for 'coffee': ["organic", "dark roast", "decaf", "espresso", "instant"]
+    You are an e-commerce SEO engine. Generate exactly 5 single-word search modifiers for: "{base_keyword}".
+    Return ONLY a raw JSON object with the key "modifiers" containing the list.
+    Example: {{"modifiers": ["wireless", "gaming", "budget", "ergonomic", "compact"]}}
     """
     
     try:
         response = ollama.generate(
             model="qwen2.5:7b", 
             prompt=prompt, 
-            format="json", 
-            options={"temperature": 0.4, "num_predict": 100}
+            format="json",
+            options={"temperature": 0.3, "num_predict": 150}
         )
-        modifiers = json.loads(response["response"].strip())
         
-        if isinstance(modifiers, dict):
-            modifiers = list(modifiers.values())[0]
+        # --- DEBUGGING LINE ---
+        raw_text = response["response"].strip()
+        print(f"[DEBUG] Raw response from Ollama: {raw_text}")
+        # ----------------------
             
-        if not isinstance(modifiers, list):
-            raise ValueError("LLM did not return a list.")
+        parsed_json = json.loads(raw_text)
+        modifiers = parsed_json.get("modifiers", [])
+        
+        if not isinstance(modifiers, list) or len(modifiers) == 0:
+            raise ValueError("Structured schema did not yield a valid population array.")
             
-        print(f"[*] AI Generated Modifiers: {modifiers}")
-        return [f"{mod} {base_keyword}" for mod in modifiers] + [base_keyword]
+        # Standardize strings to lowercase alphanumeric words
+        clean_modifiers = [re.sub(r'[^a-zA-Z0-9-]', '', str(mod).lower()) for mod in modifiers[:5]]
+        print(f"[*] AI Generated Modifiers: {clean_modifiers}")
+        
+        return [f"{mod} {base_keyword}" for mod in clean_modifiers] + [base_keyword]
         
     except Exception as e:
-        print(f"[!] AI Modifier generation failed: {e}. Falling back to default expansion.")
+        print(f"[!] AI Modifier generation failed: {e}. Falling back to default expansion tier.")
         return [f"premium {base_keyword}", f"budget {base_keyword}", base_keyword]
 
 def translate_to_jp(keyword):
@@ -122,7 +127,6 @@ def parse_amazon_data(html, keyword, page_number):
                 
             structured_text_input += f"Item {idx+1}:\nText: {text_content}\nLink: {clean_link}\n\n"
 
-        # Simplified Prompt: No static fields requested to prevent Schema Bleed
         prompt = f"""
         You are an expert data parsing engine. Read the numbered items below.
         Extract the products into a valid JSON array of objects.
@@ -167,7 +171,6 @@ def parse_amazon_data(html, keyword, page_number):
                 valid_items = []
                 for item in extracted_data:
                     if isinstance(item, dict) and "URL" in item and item["URL"] != "N/A":
-                        # Python forces the static keys here, saving tokens and preventing errors
                         item["Platform"] = "Amazon JP"
                         item["Search_Term"] = keyword
                         valid_items.append(item)
@@ -193,7 +196,7 @@ if __name__ == "__main__":
     target_quota = args.number
     
     global_unique_data = []
-    seen_urls = set()  # Stateful tracking for real-time deduplication
+    seen_urls = set()  
     
     try:
         for base_item in base_items:
@@ -206,7 +209,7 @@ if __name__ == "__main__":
             target_keywords_jp = [translate_to_jp(kw) for kw in wide_keywords_en]
             
             page_num = 1
-            max_pages = 10 # Safety ceiling to prevent infinite loops on extremely niche keywords
+            max_pages = 12 # Incremented slightly to allow deep pagination scaling for large quotas
             
             while len(global_unique_data) < target_quota and page_num <= max_pages:
                 print(f"\n[*] --- INITIATING BATCH: PAGE {page_num} ---")
@@ -227,14 +230,12 @@ if __name__ == "__main__":
                 for raw_html, jp_kw, p_num in html_payloads:
                     page_data = parse_amazon_data(raw_html, jp_kw, p_num)
                     
-                    # Real-Time Deduplication Loop
                     for item in page_data:
                         url = item.get("URL", "")
                         if url not in seen_urls and url != "N/A":
                             seen_urls.add(url)
                             global_unique_data.append(item)
                             
-                    # Hard break if quota is hit mid-batch
                     if len(global_unique_data) >= target_quota:
                         break
                         
@@ -250,7 +251,7 @@ if __name__ == "__main__":
             if len(global_unique_data) >= target_quota:
                 print(f"\n[*] TARGET QUOTA REACHED. Halting extraction threads.")
             else:
-                print(f"\n[*] MAX PAGINATION REACHED. Keyword exhausted at {len(global_unique_data)} items.")
+                print(f"\n[*] MAX PAGINATION REACHED. Keyword variants exhausted at {len(global_unique_data)} items.")
 
     except KeyboardInterrupt:
         print(f"\n\n[!] Interruption caught (^C). Gracefully halting pipeline and extracting progress...")
@@ -260,8 +261,6 @@ if __name__ == "__main__":
     finally:
         if global_unique_data:
             print(f"\n[*] Launching recovery dump blocks...")
-            
-            # Slice down to exact target if we slightly overshot during the last batch loop
             final_data = global_unique_data[:target_quota]
             
             df = pd.DataFrame(final_data)
