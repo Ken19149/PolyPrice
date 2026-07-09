@@ -1,0 +1,6 @@
+# PolyPrice Git Ignore Firewall
+exports/
+*.html
+__pycache__/
+.venv/
+.pytest_cache/
