@@ -1,18 +1,511 @@
 === PolyPrice Pipeline Telemetry ===
 
+[ANOMALY ENCOUNTERED] Search Term: 'メンブレンメカニカルキーボード' | Page: 2
+Extracted Title: Redragon K630 60% 有線 RGB ゲーミングキーボード、61キー コンパクトメカニカルキーボード、シルバースイッチ
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: Redragon K630 60% 有線 RGB ゲーミングキーボード、61キー コンパクトメカニカルキーボード、シルバースイッチ、プロドライバーサポート、ブラック 4.7 5つ星のうち4.7 (6)
+Link: https://www.amazon.co.jp/dp/B0FJFJ1R4T
+
+Item 2:
+Text: Razer レイザー Ornata V3 Tenkeyless JP 心地良いクリック感のメカ・メンブレンスイッチ搭載テンキーレス薄型有線キーボード ロープロファイル バックライトが光る専用メディアキー UV コートキーキャップ Chroma RGB ライティング マグネット式リストレスト付属 日本語配列 【日本正規代理店保証品】オルナータ ブイスリー テンキーレス ジェイピー 4.2 5つ星のうち4.2 (43) 価格、商品詳細ページ THB 2,487.68 THB 2,487 . 68 120ポイント(1%) 無料配送 7月17日 金曜日 にお届け 配送先: タイ 残り2点 ご注文はお早めに カートに入れる こちらからもご購入いただけます THB 1,800.92 (6点の中古品と新品)
+Link: https://www.amazon.co.jp/dp/B0C7398DND
+
+Item 3:
+Text: Womier 60% ゲーミングメカニカルキーボード、QMK/VIA対応、ホットスワップ可能、ガスケットマウント、RGBバックライト、PBTキーキャップ付き (VK66 PRO ピンク) 4.4 5つ星のうち4.4 (193) 価格、商品詳細ページ THB 1,340.11 THB 1,340 . 11 参考価格: THB 1,418.95 参考価格: THB 1,418.95 THB1,418.95 68ポイント(1%) タイに発送 残り17点 ご注文はお早めに オプションを表示
+Link: https://www.amazon.co.jp/dp/B0FY5B3XCQ
+
+Item 4:
+Text: e元素ゲーミングキーボード82キー 銀軸 75%ワイヤレス メカニカルキーボード Bluetooth&2.4G無線&USB有線接続 ホットスワップ RGBバックライト付き iOS/Android/Mac/Windows
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '手頃な価格のメカニカルキーボード' | Page: 2
+Extracted Title: Logicool G ゲーミングキーボード G512-TC ブラック
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: Logicool G ゲーミングキーボード G512-TC ブラック メカニカルキーボード タクタイル 日本語配列 LIGHTSYNC RGB 静音 G512 Carbon 国内正規品 2年間メーカー保証 3.8 5つ星のうち3.8 (131) オプションを表示
+Link: https://www.amazon.co.jp/dp/B07CL42YK6
+
+Item 2:
+Text: キーキャップはずし 4爪 2in1 両用 キープラー スイッチリムーバー 304 ステンレス鋼材 ホットスワップ対応 メカニカルキーボード専用 キーボードメンテナンスツール 4.4 5つ星のうち4.4 (2) 価格、商品詳細ページ THB 123.45 THB 123 . 45 配送料 THB 313.71 7月17日 金曜日 にお届け タイに発送 カートに入れる
+Link: https://www.amazon.co.jp/dp/B0GTQCVWFX
+
+Item 3:
+Text: AJAZZ日本公式 国内正規品 AK820メカニカルキーボード テンキーレス 82キー 75% 赤軸 金属ノブ付き 有線ホットスワップ対応 取り外し可能USBポート 内部5層ガスケット 音量調節CNC ホワイトバックライト Windows/Macに対応 オフィス ゲーム 日常使用に最適 過去1ヵ月でAmazonで新しく追加された商品 価格、商品詳細ページ THB 1,093.42 THB 1,093 . 42 264ポイント(5%) 配送料 THB 419.73 7月17日 金曜日 にお届け タイに発送 残り17点 ご注文はお早めに カートに入れる
+Link: https://www.amazon.co.jp/dp/B0H4QXXH1J
+
+Item 4:
+Text: AKS068 ゲーミングキーボード アアリスレイアウト有線65% 68キー赤軸 人間工学 メカニカルキーボード ホットスワップ可能 VIA プログラム可能 GASKET構造 USB Type-Cノブ付き ABS 3色キーキャップ OEMプロファイル RGBバックライト搭載24Kケーブル付き Windows Vista/XP/7/8/10/11、Macに対応(橙紅色) 4.0 5つ星のうち4.0 (69) 価格、商品詳細ペ
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '手頃な価格のメカニカルキーボード' | Page: 2
+Extracted Title: Razer キーボード BlackWidow Lite Mercury White メカニカル
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: Perixx(ペリックス) PERIBOARD-106BUS キーボード 有線 パフォマンス フルサイズ USB メンブレン 最大1000万回のキーストローク 【正規保証品】(英語配列・ブラック) 4.3 5つ星のうち4.3 (1575) 価格、商品詳細ページ THB 1,142.17 THB 1,142 . 17 55ポイント(1%) 無料配送 7月17日 金曜日 にお届け 対象商品を ￥10,000 (THB 2,074.79) 以上の注文 配送先: タイ カートに入れる こちらからもご購入いただけます THB 784.69 (3点の中古品と新品)
+Link: https://www.amazon.co.jp/dp/B00MPW3TBS
+
+Item 2:
+Text: Parishopメカニカルキーボード ゲーミングキーボード キースイッチ 十字形青軸 メカニカル押しボタンスイッチ 10個セット キーボード部品 修理 交換用 学生 友達 DIY 4.6 5つ星のうち4.6 (6) 価格、商品詳細ページ THB 105.40 THB 105 . 40 配送料 THB 313.71 7月17日 金曜日 にお届け タイに発送 カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FLYNK2J3
+
+Item 3:
+Text: Razer キーボード BlackWidow Lite Mercury White メカニカル キーボード 静音オレンジ軸 テンキーレス 英語US配列 【日本正規代理店保証品】 RZ03-02640700-R3M1 4.4 5つ星のうち4.4 (1372) オプションを表示
+Link: https://www.amazon.co.jp/dp/B07WRHPFYK
+
+Item 4:
+Text: ZIYOULANG M88 コンパクト ワイヤレス メカニカルキーボード Bluetooth デュアルモード 2.4GHz Type-C/USB-A変換アダプタ付属 87キー 80%レイアウト ホットスワップ対応 ガスケット構造 赤軸 PBT球面キーキャップ マルチメディアキー 人間工学デザイン Windows/Mac/Android/IOS対応 - チーズ 4.0 5つ星のうち4.0 (18) 価
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: 'メカニカルキーボード' | Page: 2
+Extracted Title: Redragon K630 60%有線RGBゲーミングキーボード、61キーコンパクトメカニカルキーボード
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: Redragon K630 60% 有線 RGB ゲーミングキーボード、61キー コンパクトメカニカルキーボード、シルバースイッチ、プロドライバーサポート、ブラック 4.7 5つ星のうち4.7 (6)
+Link: https://www.amazon.co.jp/dp/B0FJFJ1R4T
+
+Item 2:
+Text: エレコム ゲーミングキーボード V-custom VK200S 有線 テンキーレス 65%サイズ メカニカル ネオクラッチキーキャップ 銀軸 スピードリニア USBポート搭載 TK-VK200SBK 4.3 5つ星のうち4.3 (95) オプションを表示 「おすすめ出品」の要件を満たす出品はありません THB 1,065.82 (8点の中古品と新品)
+Link: https://www.amazon.co.jp/dp/B0BB6FVBFJ
+
+Item 3:
+Text: Womier 60% ゲーミングメカニカルキーボード、QMK/VIA対応、ホットスワップ可能、ガスケットマウント、RGBバックライト、PBTキーキャップ付き (VK66 PRO ピンク) 4.4 5つ星のうち4.4 (193) 価格、商品詳細ページ THB 1,340.11 THB 1,340 . 11 参考価格: THB 1,418.95 参考価格: THB 1,418.95 THB1,418.95 68ポイント(1%) タイに発送 残り17点 ご注文はお早めに オプションを表示
+Link: https://www.amazon.co.jp/dp/B0FY5B3XCQ
+
+Item 4:
+Text: CHONCHOW ワイヤレスゲーミングメカニカルキーボード赤軸 日本語配列 有線USB接続可能 マクロ定義ボタン 108キー3モード対応 搭載 Bluetooth 5.0/2.4G/USB-C RGB LEDバックライライトホットスワップ対応 接続 Windows XP以降、Mac、Android、iOSに対応日本語説明書付 4.0 5つ星のうち4.0 (110) 価格、商品詳細ページ THB 1,539.29 THB 1,539 . 29 過去価格: THB 1,867.11 過去価格: THB 1,867.11 THB1,867.11 90ポイント(1%) 
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: 'ワイヤレスメカニカルキーボード' | Page: 3
+Extracted Title: LTC Nimbleback NB981 95% ワイヤレスメカニカルキーボード、2.4G/BT/USB-C有線 RGB 98キー ゲーミングキーボード
+Raw AI Price Output: 'THB 未提供（价格信息缺失）'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: YUNZII B68 65％ ワイヤレスメカニカルキーボード ゲーミングキーボード BT5.0/2.4GHz/有線 ホットスワップ対応 ガスケットキーボード RGBバックライトWin/Mac用 技適認証取得 (ブラック, ココアクリームV2スイッチ) 4.7 5つ星のうち4.7 (152) 価格、商品詳細ページ THB 1,711.50 THB 1,711 . 50 825ポイント(10%) 無料配送 7月17日 金曜日 にお届け 対象商品を ￥10,000 (THB 2,074.79) 以上の注文 配送先: タイ カートに入れる
+Link: https://www.amazon.co.jp/dp/B0DDTMCC3C
+
+Item 2:
+Text: LTC Nimbleback NB981 95% ワイヤレス メカニカル キーボード、2.4G/BT/USB-C 有線 RGB 98 キー ゲーミング キーボード、3 層ダンパー、ホットスワップ PCB、ソフトウェア サポート、カスタム リニア スイッチ 4.0 5つ星のうち4.0 (128) 価格、商品詳細ページ THB 1,721.87 THB 1,721 . 87 415ポイント(5%) 無料配送 7月17日 金曜日 にお届け 対象商品を ￥10,000 (THB 2,074.79) 以上の注文 配送先: タイ カートに入れる
+Link: https://www.amazon.co.jp/dp/B0DDTJ9PFF
+
+Item 3:
+Text: YUNZII C68 ワイヤレスメカニカルキーボード かわいいパンダ 65％ 無線 ホットスワップ シリコーン 人間工学 ゲーミングキーボード三つモード BT5.0/2.4G/有線 RGBバックライト NKRO Win/Mac用 技適認証取得(パンダスイッチ,ホワイト) 4.7 5つ星のうち4.7 (146) 価格、商品詳細ページ THB 1,609.83 THB 1,609 . 83 過去価格: THB 1,749.88 過去価格: THB 1,749.88 THB1,749.88 241ポイント(3%) タイに発送 残り4点 ご注文はお早めに オプションを表示
+Link: https://www.amazon.co.jp/dp/B0D5DCF
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: 'メンブレンメカニカルキーボード' | Page: 3
+Extracted Title: Razer Ornata V2 JP ゲーミングキーボード
+Raw AI Price Output: 'N/A (価格、商品詳細ページ)'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: バッファロー キーボード 有線 USB Type-A フルキーボード テンキー 109キー 日本語配列 メンブレン ホワイト BSKBU115WH 価格、商品詳細ページ THB 290.47 THB 290 . 47 14ポイント(1%) 「予約商品の価格保証」対象商品。 配送料 THB 375.12 8月7日 金曜日 にお届け タイに発送 この商品の発売予定日は2026年7月29日です。 カートに入れる
+Link: https://www.amazon.co.jp/dp/B0H6J7SRHB
+
+Item 2:
+Text: エレコム USB-A ゲーミングキーボード メカニカル 茶軸 5000万回耐久スイッチ 日本語配列 ゲーミングキーキャップ付属 全キーロールオーバー対応 LED搭載 ブラック ECTK-G01UKBK 4.3 5つ星のうち4.3 (1030) オプションを表示 「おすすめ出品」の要件を満たす出品はありません THB 1,302.97 (2点の中古品と新品)
+Link: https://www.amazon.co.jp/dp/B07DNMFFXV
+
+Item 3:
+Text: ENHANCE gaming Voltaic 2 ゲーミング キーボード - LED バックライト付きメンブレン キーボード クリアな回路設計 マルチメディア キー付きメカニカル フィーリング キーボード 19KRO アンチゴースト - PC 用人間工学に基づいたキーボード (ブラック：並行輸入品) 4.4 5つ星のうち4.4 (14) 価格、商品詳細ページ THB 1,933.08 THB 1,933 . 08 93ポイント(1%) 配送料 THB 307.07 7月30日-8月4日 にお届け 通常4～5日以内に発送します。 カートに入れる
+Link: https://www.amazon.co.jp/dp/B0CL5KBHNB
+
+Item 4:
+Text: Greabuy 104キー USB有線キーボード LEDゲーミングキーボード メカニカルメンブレンキーボード ゲーミングノートパソコン用 価格、商品詳細ページ THB 525.75 THB 525 . 75 25ポイント(1%) プロモーション情報 2点買うと5% OFF 配送料 THB 3
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '手頃な価格のメカニカルキーボード' | Page: 3
+Extracted Title: メカニカルキーボード
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: GATERON (ゲートロン) KS-33 ロープロファイル 2.0 キーボードスイッチ、3ピン ブラックボトム 工場出荷時点プレルブ済み ロープロファイル MX メカニカルキーボード用 (ブルー、35個) 4.1 5つ星のうち4.1 (14) 価格、商品詳細ページ THB 371.39 THB 371 . 39 ( THB 10.61 THB10.61 /個) 残り8点 ご注文はお早めに オプションを表示
+Link: https://www.amazon.co.jp/dp/B0FC6DTXBZ
+
+Item 2:
+Text: その他+4色/柄 kutethy ツインズスイッチプラー キーキャッププーラー メカニカルキーボード用 DIYツール ゲーム用キーボードスイッチとキーキャップの取り外しと交換が簡単 (ブラック) 3.8 5つ星のうち3.8 (17) 価格、商品詳細ページ THB 503.76 THB 503 . 76 過去価格: THB 629.70 過去価格: THB 629.70 THB629.70 61ポイント(3%) タイに発送 残り19点 ご注文はお早めに オプションを表示
+Link: https://www.amazon.co.jp/dp/B0G145D4CC
+
+Item 3:
+Text: Anopono キーキャップ 猫 肉球 猫手 猫の爪 キーボード カスタムキーキャップ キートップ メカニカル 9個セット 5.0 5つ星のうち5.0 (2) 価格、商品詳細ページ THB 285.70 THB 285 . 70 過去価格: THB 348.57 過去価格: THB 348.57 THB348.57 17ポイント(1%) タイに発送 残り17点 ご注文はお早めに オプションを表示
+Link: https://www.amazon.co.jp/dp/B0FW42SYW5
+
+Item 4:
+Text: 4爪 メカニカルキーボード 2in1 両用 キートップ引抜工具 キートップ 外し キープラー 4つのキーキャップが一度に取り外せ 420ステンレス鋼材 キーボードブラシ1本付きブラシ ブラック 2年間の品質保証 価格、商品詳細ページ THB 709.16 THB 709 . 16 以前の価格: THB 788.01 以前の価
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '予算分割キーボード' | Page: 1
+Extracted Title: ASUS ROG Falcata Gaming Keyboard / 75%レイアウトゲーミングキーボード
+Raw AI Price Output: '- THB - . -. '
+Raw DOM Content Passed to AI:
+Item 1:
+Text: YIVU Corne V4 2.4GHzワイヤレス 分離型メカニカルキーボード 40% 左右分離型 46キー カラムスタッガード配列 ホットスワップ対応 ゲータロン赤軸 QMK/Vial対応 PBTキーキャップ エルゴノミクス US配列 3.4 5つ星のうち3.4 (20) 過去1か月で50点以上購入されました 価格、商品詳細ページ THB 3,111.98 THB 3,111 . 98 150ポイント(1%) 無料配送 7月17日 金曜日 にお届け 配送先: タイ カートに入れる
+Link: https://www.amazon.co.jp/dp/B0F3D8RD3R
+
+Item 2:
+Text: YIVU Corne V4 左右分離型キーボード 有線 メカニカル 40% カラムスタッガード エルゴノミクス QMK/VIAL対応 ホットスワップ RGB搭載 プレルブ済みリニア軸 4.2 5つ星のうち4.2 (14) 価格、商品詳細ページ THB 2,489.54 THB 2,489 . 54 過去価格: THB 3,111.98 過去価格: THB 3,111.98 THB3,111.98 150ポイント(1%) タイに発送 オプションを表示
+Link: https://www.amazon.co.jp/dp/B0F3D11TXX
+
+Item 3:
+Text: ASUS ROG Falcata Gaming Keyboard / 75%レイアウトゲーミングキーボード/磁気スイッチ/ラピッドトリガー / 最大8000Hz / USB有線 / 2.4GHz無線 / Bluetooth/ブラウザ上で設定が可能/リストレスト付き/国内正規品 4.2 5つ星のうち4.2 (12) 価格、商品詳細ページ THB 8,855.42 THB 8,855 . 42 参考: THB 12,161.55 参考: THB 12,161.55 THB12,161.55 427ポイント(1%) 無料配送 7月17日 金曜日 にお届け 配送先: タイ 残り3点 ご注文はお早めに カートに入れる
+Link: https://www.amazon.co.jp/dp/B0F98RDWV9
+
+Item 4:
+Text: ライジュウ NISABI V2 LAK キーキャップ 
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '予算分割キーボード' | Page: 1
+Extracted Title: Perixx PERIDUO-606 エルゴノミクスキーボード マウステンキー三点セット
+Raw AI Price Output: '- THB - . -. '
+Raw DOM Content Passed to AI:
+Item 1:
+Text: YIVU Corne V4 2.4GHzワイヤレス 分離型メカニカルキーボード 40% 左右分離型 46キー カラムスタッガード配列 ホットスワップ対応 ゲータロン赤軸 QMK/Vial対応 PBTキーキャップ エルゴノミクス US配列 3.4 5つ星のうち3.4 (20) 過去1か月で50点以上購入されました 価格、商品詳細ページ THB 3,111.98 THB 3,111 . 98 150ポイント(1%) 無料配送 7月17日 金曜日 にお届け 配送先: タイ カートに入れる
+Link: https://www.amazon.co.jp/dp/B0F3D8RD3R
+
+Item 2:
+Text: YIVU Corne V4 左右分離型キーボード 有線 メカニカル 40% カラムスタッガード エルゴノミクス QMK/VIAL対応 ホットスワップ RGB搭載 プレルブ済みリニア軸 4.2 5つ星のうち4.2 (14) 価格、商品詳細ページ THB 2,489.54 THB 2,489 . 54 過去価格: THB 3,111.98 過去価格: THB 3,111.98 THB3,111.98 150ポイント(1%) タイに発送 オプションを表示
+Link: https://www.amazon.co.jp/dp/B0F3D11TXX
+
+Item 3:
+Text: ASUS ROG Falcata Gaming Keyboard / 75%レイアウトゲーミングキーボード/磁気スイッチ/ラピッドトリガー / 最大8000Hz / USB有線 / 2.4GHz無線 / Bluetooth/ブラウザ上で設定が可能/リストレスト付き/国内正規品 4.2 5つ星のうち4.2 (12) 価格、商品詳細ページ THB 8,855.42 THB 8,855 . 42 参考: THB 12,161.55 参考: THB 12,161.55 THB12,161.55 427ポイント(1%) 無料配送 7月17日 金曜日 にお届け 配送先: タイ 残り3点 ご注文はお早めに カートに入れる
+Link: https://www.amazon.co.jp/dp/B0F98RDWV9
+
+Item 4:
+Text: ライジュウ NISABI V2 LAK キーキャップ 
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '予算分割キーボード' | Page: 1
+Extracted Title: YIVU Corne Mini 分離式メカニカルキーボード 36キー
+Raw AI Price Output: '- THB - . -. '
+Raw DOM Content Passed to AI:
+Item 1:
+Text: YIVU Corne V4 2.4GHzワイヤレス 分離型メカニカルキーボード 40% 左右分離型 46キー カラムスタッガード配列 ホットスワップ対応 ゲータロン赤軸 QMK/Vial対応 PBTキーキャップ エルゴノミクス US配列 3.4 5つ星のうち3.4 (20) 過去1か月で50点以上購入されました 価格、商品詳細ページ THB 3,111.98 THB 3,111 . 98 150ポイント(1%) 無料配送 7月17日 金曜日 にお届け 配送先: タイ カートに入れる
+Link: https://www.amazon.co.jp/dp/B0F3D8RD3R
+
+Item 2:
+Text: YIVU Corne V4 左右分離型キーボード 有線 メカニカル 40% カラムスタッガード エルゴノミクス QMK/VIAL対応 ホットスワップ RGB搭載 プレルブ済みリニア軸 4.2 5つ星のうち4.2 (14) 価格、商品詳細ページ THB 2,489.54 THB 2,489 . 54 過去価格: THB 3,111.98 過去価格: THB 3,111.98 THB3,111.98 150ポイント(1%) タイに発送 オプションを表示
+Link: https://www.amazon.co.jp/dp/B0F3D11TXX
+
+Item 3:
+Text: ASUS ROG Falcata Gaming Keyboard / 75%レイアウトゲーミングキーボード/磁気スイッチ/ラピッドトリガー / 最大8000Hz / USB有線 / 2.4GHz無線 / Bluetooth/ブラウザ上で設定が可能/リストレスト付き/国内正規品 4.2 5つ星のうち4.2 (12) 価格、商品詳細ページ THB 8,855.42 THB 8,855 . 42 参考: THB 12,161.55 参考: THB 12,161.55 THB12,161.55 427ポイント(1%) 無料配送 7月17日 金曜日 にお届け 配送先: タイ 残り3点 ご注文はお早めに カートに入れる
+Link: https://www.amazon.co.jp/dp/B0F98RDWV9
+
+Item 4:
+Text: ライジュウ NISABI V2 LAK キーキャップ 
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '分割キーボード' | Page: 1
+Extracted Title: YMDK スプリットキーボード Corne V4.1
+Raw AI Price Output: '(無価格情報)'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: Ewin エルゴノミクス キーボード Bluetooth 疲れにくい 2.4G+Bluetooth両対応 ワイヤレスキーボード 無線 テンキー付き フルサイズ 左右分離型 人間工学 Windows Mac iOS Android JIS配列 ホワイト 3.9 5つ星のうち3.9 (141) 価格、商品詳細ページ THB 1,760.05 THB 1,760 . 05 過去価格: THB 2,070.64 過去価格: THB 2,070.64 THB2,070.64 100ポイント(1%) タイに発送 オプションを表示
+Link: https://www.amazon.co.jp/dp/B0FHW88KYD
+
+Item 2:
+Text: Corne 分離型キーボード 46キー 有線接続 RGBバックライト VIAL対応 キー再割当可能 MX互換 ホットスワップ 価格、商品詳細ページ THB 2,904.50 THB 2,904 . 50 700ポイント(5%) THB 311.22 OFF THB 311.22オフクーポンが適用されました THB 311.22 OFF クーポンあり 無料配送 7月17日 金曜日 にお届け 配送先: タイ 残り14点 ご注文はお早めに カートに入れる
+Link: https://www.amazon.co.jp/dp/B0GLDYYZGR
+
+Item 3:
+Text: 分离型メカニカルキーボード Corne 46キー 自作キーボード VIAL対応 エルゴノミクス ホットスワップ RGBバックライト 40%レイアウト 左右分離 プログラマー向け PBTキーキャップ 有線 TRS接続 価格、商品詳細ページ THB 2,904.50 THB 2,904 . 50 700ポイント(5%) 無料配送 7月17日 金曜日 にお届け 配送先: タイ 残り10点 ご注文はお早めに カートに入れる
+Link: https://www.amazon.co.jp/dp/B0GLF8BZQ5
+
+Item 4:
+Text: Corne 46キー 分離型キーボード 有線 VIAL QMK対応 RGB MX互換 ホットスワップ PBT 価格、商品詳細ページ THB 2,904.50 THB 2,904 . 50 700ポイント(5%) 無
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '予算分割キーボード' | Page: 2
+Extracted Title: マイクロソフト エルゴノミックキーボード LXM-00018
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: 人間工学に基づいたゲーム キーボード - 片手ゲーミング キーボード、TF900 小型ゲーミング キーパッド |プログラマブル携帯電話キーボード、コンピュータデスクトップPC ゲーマー用の自然な人間工学に基づいた分割キーボード 価格、商品詳細ページ THB 205.20 THB 205 . 20 30ポイント(3%) 2点買うと10% OFF 配送料 THB 227.81 8月11日-19日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0DKNLZHD2
+
+Item 2:
+Text: be quiet! ダークマウントメカニカルキーボード DARK MOUNT (リニアスイッチ) ホットスワップ可能な潤滑サイレントスイッチ 取り外し可能なテンパッドとメディアドック プログラム可能なARGBキー PBT ダブルショットキーキャップ 国内正規代理店品 BT001US DRK-MNT/LN 3.9 5つ星のうち3.9 (63) オプションを表示 「おすすめ出品」の要件を満たす出品はありません THB 10,001.96 （1点の新品）
+Link: https://www.amazon.co.jp/dp/B0F3SCQ658
+
+Item 3:
+Text: EPOMAKER RT85 ワイヤレスゲーミングキーボード ジョイスティック＆DIYスクリーン搭載 テンキーレス 8000mAh Bluetooth/USB/2.4Ghz ホットスワップ対応 PBTキーキャップ クリーミーガスケット構造 75% 配列メカニカルキーボード英語配列 (Retro White, Creamy Jade) 4.2 5つ星のうち4.2 (81) 価格、商品詳細ページ THB 2,156.75 THB 2,156 . 75 過去価格: THB 2,344.31 過去価格: THB 2,344.31 THB2,344.31 151ポイント(1%) タイに発送 リサイクル素材 +さらに2 サステナブルな特徴 この商品は信頼できる認証機関によってサステナブルな特徴があると認められています。 リサイクル素材 少なくとも50％のリサイクル素材が含まれています。 認証機関名： Global Recycled Standard Glob
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '予算分割キーボード' | Page: 2
+Extracted Title: 東プレ REALFORCE S R2 日本語108配列 静電容量無接点方式 USBキーボード
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: SIKAI CASE 片手キーボード 普通型番 プログラマブルキーボード メカニカルキーボード 【Bluetooth接続 レイヤ付き ノブ1個付き RGBなし】6キー 左手ゲーミングキーボード 片手 軸体が交換可能 DIY カスタム可能なキー 片手 小型キーボード 片手ゲーミングキーボード mac プログラマー向き DIYキーボード Windows/VISTA/Linux/Macに適用 オフィス/ゲーム/音楽/メディア/作業制御に最適 (6キー Bluetooth接続, 白) 3.3 5つ星のうち3.3 (22) 価格、商品詳細ページ THB 1,037.19 THB 1,037 . 19 50ポイント(1%) 配送料 THB 331.76 7月17日 金曜日 にお届け タイに発送 残り3点 ご注文はお早めに カートに入れる
+Link: https://www.amazon.co.jp/dp/B0B1DJC8NS
+
+Item 2:
+Text: 東プレ REALFORCE S R2 日本語108配列 静電容量無接点方式 USBキーボード 静音モデル 荷重45g レーザー刻印 かな表記なし ブラック R2S-JP4-BK 4.8 5つ星のうち4.8 (57) オプションを表示
+Link: https://www.amazon.co.jp/dp/B076W4752T
+
+Item 3:
+Text: BAROCCOMiSTEL MD770 RGB BT5.0 Glaze Blue TKL 人間工学メカニカルキーボード 75%分割配列 Cherry MX PBT ダブルショットキーキャップ Mac/Windows OS対応 (チェリーレッド) 4.3 5つ星のうち4.3 (33) オプションを表示 「おすすめ出品」の要件を満たす出品はありません THB 10,469.82 （1点の新品）
+Link: https://www.amazon.co.jp/dp/B0F3D2MQ9H
+
+
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: 'ワイヤレス分割キーボード' | Page: 2
+Extracted Title: ロジクール ワイヤレス トラックボールマウス MX ERGO S MXTB2d + エルゴノミックキーボード K860
+Raw AI Price Output: '- (無価格情報)'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: SIKAI CASE マクロキーボード 無線 片手キーボード【ご注意：1レイヤーしかない 】Bluetooth 3種接続 2.4Gドングル付 7色RGB 赤軸 メカニカルキーボード 軸体交換 18キャラクタ プログラマブルキーボード 片手 小型キーボード ショットカットキー プログラマー向き ゲーム/メディア/作業制御 (4+1 無線) 3.8 5つ星のうち3.8 (122) 価格、商品詳細ページ THB 709.37 THB 709 . 37 過去価格: THB 746.72 過去価格: THB 746.72 THB746.72 38ポイント(1%) タイに発送 残り6点 ご注文はお早めに オプションを表示
+Link: https://www.amazon.co.jp/dp/B0BX97GSFV
+
+Item 2:
+Text: Ewin テンキー Bluetooth/ 2.4G接続 numlock非連動 ワイヤレス 数字キーボード 3台デイバス接続 Bluetoothキーボード 超薄型 左手デバイス 片手デバイス ショートカットキー 日本語対応 iOS iPadOS Windows Androidに対応 3.9 5つ星のうち3.9 (172) 価格、商品詳細ページ THB 444.42 THB 444 . 42 過去価格: THB 535.30 過去価格: THB 535.30 THB535.30 24ポイント(1%) タイに発送 オプションを表示
+Link: https://www.amazon.co.jp/dp/B0D3CX2FHC
+
+Item 3:
+Text: SIKAI CASE 新型番 15キー プログラマブルキーボード 2023 片手キーボード メカニカルキーボード【2.4G接続 Bluetooth接続 7色RGB 回転ノブ 18キャラクタ 6連打】2.4GHzレシーバ付き 3モード連続 カスタム可能なキー 片手 小型キーボード ショットカットキー プログラマー向き DIYキーボード オフィス/ゲーム/音楽/メディア/作業制御に最適 (新型番 無線15キー 黒RGB) 3.8 5つ星のうち3.8 (8) 価格、商品詳細ページ THB 1,306.91 THB 1,306 . 91 過去価格: THB 1,445.30 過去価格
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: 'ワイヤレス分割キーボード' | Page: 2
+Extracted Title: -
+Raw AI Price Output: '(無価格情報)'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: SIKAI CASE マクロキーボード 無線 片手キーボード【ご注意：1レイヤーしかない 】Bluetooth 3種接続 2.4Gドングル付 7色RGB 赤軸 メカニカルキーボード 軸体交換 18キャラクタ プログラマブルキーボード 片手 小型キーボード ショットカットキー プログラマー向き ゲーム/メディア/作業制御 (4+1 無線) 3.8 5つ星のうち3.8 (122) 価格、商品詳細ページ THB 709.37 THB 709 . 37 過去価格: THB 746.72 過去価格: THB 746.72 THB746.72 38ポイント(1%) タイに発送 残り6点 ご注文はお早めに オプションを表示
+Link: https://www.amazon.co.jp/dp/B0BX97GSFV
+
+Item 2:
+Text: Ewin テンキー Bluetooth/ 2.4G接続 numlock非連動 ワイヤレス 数字キーボード 3台デイバス接続 Bluetoothキーボード 超薄型 左手デバイス 片手デバイス ショートカットキー 日本語対応 iOS iPadOS Windows Androidに対応 3.9 5つ星のうち3.9 (172) 価格、商品詳細ページ THB 444.42 THB 444 . 42 過去価格: THB 535.30 過去価格: THB 535.30 THB535.30 24ポイント(1%) タイに発送 オプションを表示
+Link: https://www.amazon.co.jp/dp/B0D3CX2FHC
+
+Item 3:
+Text: SIKAI CASE 新型番 15キー プログラマブルキーボード 2023 片手キーボード メカニカルキーボード【2.4G接続 Bluetooth接続 7色RGB 回転ノブ 18キャラクタ 6連打】2.4GHzレシーバ付き 3モード連続 カスタム可能なキー 片手 小型キーボード ショットカットキー プログラマー向き DIYキーボード オフィス/ゲーム/音楽/メディア/作業制御に最適 (新型番 無線15キー 黒RGB) 3.8 5つ星のうち3.8 (8) 価格、商品詳細ページ THB 1,306.91 THB 1,306 . 91 過去価格: THB 1,445.30 過去価格
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '分割キーボード' | Page: 2
+Extracted Title: ミニキーボード Bluetooth 5.0 ワイヤレス 2.4GHz RGBバックライト 多機能キーボード 無線 USBレシーバー 超小型 Windows Android iOS TV Box PC TVなど対応 Type-Cポート 内蔵バッテリー (ブラック)
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: Perixx(ペリックス) PERIBOARD-512BUS エルゴノミクス キーボード 有線 英語配列 フルサイズ 左右分離型 人間工学 104キー 立体カーブ 腱鞘炎防止 【正規保証品】(有線・ブラック) 4.2 5つ星のうち4.2 (9077) 価格、商品詳細ページ THB 1,826.03 THB 1,826 . 03 参考価格: THB 2,053.84 参考価格: THB 2,053.84 THB2,053.84 カートに入れる
+Link: https://www.amazon.co.jp/dp/B075GZVD4T
+
+Item 2:
+Text: ミニキーボード Bluetooth 5.0 ワイヤレス 2.4GHz RGBバックライト 多機能キーボード 無線 USBレシーバー 超小型 Windows Android iOS TV Box PC TVなど対応 Type-Cポート 内蔵バッテリー (ブラック) 3.6 5つ星のうち3.6 (48) 過去1か月で50点以上購入されました
+Link: https://www.amazon.co.jp/dp/B0FH2N7D2P
+
+Item 3:
+Text: Ewin® ミニ キーボード bluetooth 日本語JIS配列 ワイヤレス式 2.4GHz タッチパッド搭載 バックライト付き 応急LEDライト付き マウスセット一体型 Bluetoothドングル付属 多機能ボタン 無線 USBレシーバー付き Mini Bluetooth keyboard 超小型 TV Box、PC、Amazon fire TV等対応【日本語説明書付き】 4.0 5つ星のうち4.0 (2218) 過去1か月で500点以上購入されました 価格、商品詳細ページ THB 660.61 THB 660 . 61 参考価格: THB 888.01 参考価格: THB 888.01 THB888.01 43ポイント(1%) タイに発送 オプションを表示
+Link: https://www.amazon.co.jp/dp/B00QQ6HA00
+
+Item 4:
+Text: 分離型キーボード Corne 3x5 36キー 左右分離 メカニカルキーボード RGB ホットスワップ対応 エルゴノミクス プログラマー向け 打鍵音重視 
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '分割キーボード' | Page: 2
+Extracted Title: PFU Happy Hacking Keyboard Lite2 日本語配列かな印字なし USBキーボード
+Raw AI Price Output: ''
+Raw DOM Content Passed to AI:
+Item 1:
+Text: bitFerrous BFKB113PBK 複数同時押し対応パンタグラフタイプキーボード BFKB113PBK 4.4 5つ星のうち4.4 (130) 価格、商品詳細ページ THB 1,471.44 THB 1,471 . 44 71ポイント(1%) 無料配送 7月17日 金曜日 にお届け 対象商品を ￥10,000 (THB 2,074.79) 以上の注文 配送先: タイ 残り16点 ご注文はお早めに カートに入れる こちらからもご購入いただけます THB 1,453.39 （2点の新品）
+Link: https://www.amazon.co.jp/dp/B00NBCFDTW
+
+Item 2:
+Text: 左手デバイス キーボード相棒 4キー1ノブ 外観まで自定義 プログラマブルキーボード マクロ対応 ホットスワップ対応 ノブ ホイール ショートカットキー 多モードRGBライト付き 機能を自由に割り当て可能 有線接続 赤軸 省力 初心者安心 デザイン/財務/オフィス/ゲーム/メディア操作 4.0 5つ星のうち4.0 (1) 価格、商品詳細ページ THB 591.11 THB 591 . 11 過去価格: THB 622.23 過去価格: THB 622.23 THB622.23 30ポイント(1%) タイに発送 オプションを表示
+Link: https://www.amazon.co.jp/dp/B0CQNT6PJ9
+
+Item 3:
+Text: エレコム ゲーミングキーボード 【DUX】 全キーカスタマイズ ハードウェアマクロ対応 TK-DUX30BK ブラック 4.1 5つ星のうち4.1 (635) 価格、商品詳細ページ THB 807.30 THB 807 . 30 39ポイント(1%) 【夏のまとめ買いフェア】よりどり2点以上で5%OFF 無料配送 7月17日 金曜日 にお届け 対象商品を ￥10,000 (THB 2,074.79) 以上の注文 配送先: タイ カートに入れる こちらからもご購入いただけます THB 717.88 （2点の新品）
+Link: https://www.amazon.co.jp/dp/B018WNIBL6
+
+Item 4:
+Text: 分離型キーボード Corne V4.1 46キー 左右分離型 
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '予算分割キーボード' | Page: 3
+Extracted Title: 2キーミニ キーボード マクロ可能キーボード【コピー&ペースト設定】片手キーボード 日本語 2キ－メカニカルキーボード
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: キーボード、4 個 PBT キーキャップクリエイティブ XDA 凸スペースバー 1.25u 2u 2.25u 2.75u ゲーミングキーキャップ彫刻なし Xda スペースバー 過去1ヵ月でAmazonで新しく追加された商品 価格、商品詳細ページ THB 311.22 THB 311 . 22 15ポイント(1%) 配送料 THB 62.04 8月1日-8日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0H75HMJYX
+
+Item 2:
+Text: 充電式ワイヤレス キーボード 折りたたみ式 - 1 ユニット |折りたたみ入力デバイス低ノイズオフィスプロフェッショナル高強度頑丈な耐久性のあるギアセクション分割ピース ツール機器セットアップ 価格、商品詳細ページ THB 462.47 THB 462 . 47 67ポイント(3%) プロモーション情報 2点買うと5% OFF 配送料 THB 227.81 8月1日-8日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0GYSFPRQG
+
+Item 3:
+Text: 2キーミニ キーボード マクロ可能キーボード【コピー&ペースト設定】片手キーボード 日本語 2キ－メカニカルキーボード 有線接続 DIY設定キーボード プログラマー向き Windows/VISTA/Linux/Macに適用 オフィス/ゲーム/作業制御に最適 (2キー 日本語, 白色) 3.9 5つ星のうち3.9 (44) 現在在庫切れです。 オプションを表示
+Link: https://www.amazon.co.jp/dp/B0CF5L1GPF
+
+Item 4:
+Text: テンキー付きの柔軟な結合タッチパッド電卓 ノートブック用の持ち運び可能な ABS + PU キーセット セットアップに最適 入口セット PU コーティング付きの 3 分割機能キーセット 価格、商品詳細ページ THB 949.63 THB 949 . 63 46ポイント(1%) 配送料 THB 307.07 8月5日-10日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0H49GWTC4
+
+Item 5:
+T
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: 'ワイヤレス分割キーボード' | Page: 3
+Extracted Title: キーボード マウスセット
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: キーボード マウスセット 84 キー キーボードとマウス セット マット仕上げ 2.4G ワイヤレス 人間工学に基づいたデザイン キーボード マウス コンピューター(Pink) 価格、商品詳細ページ THB 2,568.67 THB 2,568 . 67 124ポイント(1%) 配送料 THB 734.68 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FH49GJ44
+
+Item 2:
+Text: キーボード マウスセット 有線ゲーミングキーボードとマウスコンボレインボーバックライトコンピュータキーボードマウスセット キーボード マウス コンピューター(White) オプションを表示 「おすすめ出品」の要件を満たす出品はありません THB 915.67 （1点の新品）
+Link: https://www.amazon.co.jp/dp/B0FBRM2GCM
+
+Item 3:
+Text: キーボード マウスセット キーボードとマウスの組み合わせ 2.4 グラムキーボードとマウスセット USB レシーバーノートブックオフィス電気ショック療法 キーボード マウス コンピューター(White) 価格、商品詳細ページ THB 1,116.10 THB 1,116 . 10 54ポイント(1%) 配送料 THB 705.22 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FC64F1D3
+
+Item 4:
+Text: キーボード マウスセット ワイヤーキーボードマウスセット流出防止設計人間工学に基づいたキーボードオフィスホーム キーボード マウス コンピューター(Multi-colored) 価格、商品詳細ページ THB 1,296.18 THB 1,296 . 18 62ポイント(1%) 配送料 THB 705.22 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FBWDC49J
+
+Item 5:
+Text: キーボード マウスセット 人間工学に基づいたキーボードとマウスのコンボ USB 有線コンピューターキーボードマウス 94
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: 'ワイヤレス分割キーボード' | Page: 3
+Extracted Title: 
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: キーボード マウスセット 84 キー キーボードとマウス セット マット仕上げ 2.4G ワイヤレス 人間工学に基づいたデザイン キーボード マウス コンピューター(Pink) 価格、商品詳細ページ THB 2,568.67 THB 2,568 . 67 124ポイント(1%) 配送料 THB 734.68 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FH49GJ44
+
+Item 2:
+Text: キーボード マウスセット 有線ゲーミングキーボードとマウスコンボレインボーバックライトコンピュータキーボードマウスセット キーボード マウス コンピューター(White) オプションを表示 「おすすめ出品」の要件を満たす出品はありません THB 915.67 （1点の新品）
+Link: https://www.amazon.co.jp/dp/B0FBRM2GCM
+
+Item 3:
+Text: キーボード マウスセット キーボードとマウスの組み合わせ 2.4 グラムキーボードとマウスセット USB レシーバーノートブックオフィス電気ショック療法 キーボード マウス コンピューター(White) 価格、商品詳細ページ THB 1,116.10 THB 1,116 . 10 54ポイント(1%) 配送料 THB 705.22 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FC64F1D3
+
+Item 4:
+Text: キーボード マウスセット ワイヤーキーボードマウスセット流出防止設計人間工学に基づいたキーボードオフィスホーム キーボード マウス コンピューター(Multi-colored) 価格、商品詳細ページ THB 1,296.18 THB 1,296 . 18 62ポイント(1%) 配送料 THB 705.22 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FBWDC49J
+
+Item 5:
+Text: キーボード マウスセット 人間工学に基づいたキーボードとマウスのコンボ USB 有線コンピューターキーボードマウス 94
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: 'ワイヤレス分割キーボード' | Page: 3
+Extracted Title: 
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: キーボード マウスセット 84 キー キーボードとマウス セット マット仕上げ 2.4G ワイヤレス 人間工学に基づいたデザイン キーボード マウス コンピューター(Pink) 価格、商品詳細ページ THB 2,568.67 THB 2,568 . 67 124ポイント(1%) 配送料 THB 734.68 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FH49GJ44
+
+Item 2:
+Text: キーボード マウスセット 有線ゲーミングキーボードとマウスコンボレインボーバックライトコンピュータキーボードマウスセット キーボード マウス コンピューター(White) オプションを表示 「おすすめ出品」の要件を満たす出品はありません THB 915.67 （1点の新品）
+Link: https://www.amazon.co.jp/dp/B0FBRM2GCM
+
+Item 3:
+Text: キーボード マウスセット キーボードとマウスの組み合わせ 2.4 グラムキーボードとマウスセット USB レシーバーノートブックオフィス電気ショック療法 キーボード マウス コンピューター(White) 価格、商品詳細ページ THB 1,116.10 THB 1,116 . 10 54ポイント(1%) 配送料 THB 705.22 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FC64F1D3
+
+Item 4:
+Text: キーボード マウスセット ワイヤーキーボードマウスセット流出防止設計人間工学に基づいたキーボードオフィスホーム キーボード マウス コンピューター(Multi-colored) 価格、商品詳細ページ THB 1,296.18 THB 1,296 . 18 62ポイント(1%) 配送料 THB 705.22 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FBWDC49J
+
+Item 5:
+Text: キーボード マウスセット 人間工学に基づいたキーボードとマウスのコンボ USB 有線コンピューターキーボードマウス 94
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: 'ワイヤレス分割キーボード' | Page: 3
+Extracted Title: 
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: キーボード マウスセット 84 キー キーボードとマウス セット マット仕上げ 2.4G ワイヤレス 人間工学に基づいたデザイン キーボード マウス コンピューター(Pink) 価格、商品詳細ページ THB 2,568.67 THB 2,568 . 67 124ポイント(1%) 配送料 THB 734.68 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FH49GJ44
+
+Item 2:
+Text: キーボード マウスセット 有線ゲーミングキーボードとマウスコンボレインボーバックライトコンピュータキーボードマウスセット キーボード マウス コンピューター(White) オプションを表示 「おすすめ出品」の要件を満たす出品はありません THB 915.67 （1点の新品）
+Link: https://www.amazon.co.jp/dp/B0FBRM2GCM
+
+Item 3:
+Text: キーボード マウスセット キーボードとマウスの組み合わせ 2.4 グラムキーボードとマウスセット USB レシーバーノートブックオフィス電気ショック療法 キーボード マウス コンピューター(White) 価格、商品詳細ページ THB 1,116.10 THB 1,116 . 10 54ポイント(1%) 配送料 THB 705.22 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FC64F1D3
+
+Item 4:
+Text: キーボード マウスセット ワイヤーキーボードマウスセット流出防止設計人間工学に基づいたキーボードオフィスホーム キーボード マウス コンピューター(Multi-colored) 価格、商品詳細ページ THB 1,296.18 THB 1,296 . 18 62ポイント(1%) 配送料 THB 705.22 7月31日-8月7日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0FBWDC49J
+
+Item 5:
+Text: キーボード マウスセット 人間工学に基づいたキーボードとマウスのコンボ USB 有線コンピューターキーボードマウス 94
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '分割キーボード' | Page: 3
+Extracted Title: マイクロソフト エルゴノミック キーボード LXM-00018
+Raw AI Price Output: 'N/A'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: Acogedor ワイヤレス人間工学キーボード、リストレスト付き充電式分割キーボード、ダブルモ BT ​​または 2.4GHz、2000mAh バッテリー Mac 用 価格、商品詳細ページ THB 2,386.84 THB 2,386 . 84 115ポイント(1%) 配送料 THB 307.07 7月22日-27日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0GYT93BFW
+
+Item 2:
+Text: 【有線】Kinesis Advantage360【キネシス アドバンテージ360】[KB360-GBR] 4.3 5つ星のうち4.3 (74) オプションを表示 「おすすめ出品」の要件を満たす出品はありません THB 20,177.99 （5点の新品）
+Link: https://www.amazon.co.jp/dp/B0BCHFHX6V
+
+Item 3:
+Text: Perixx ぺリックス PERIDUO-505 エルゴノミクスキーボード 垂直型 マウスセット 有線 調節可能なパームレスト付き ４方向チルトホイール搭載 メンブレン式 英語配列 浅いキーストローク【正規保証品】 4.2 5つ星のうち4.2 (1576) 価格、商品詳細ページ THB 1,867.11 THB 1,867 . 11 90ポイント(1%) 無料配送 7月17日 金曜日 にお届け 対象商品を ￥10,000 (THB 2,074.79) 以上の注文 配送先: タイ 残り14点（入荷予定あり） カートに入れる
+Link: https://www.amazon.co.jp/dp/B07WKRXG3C
+
+Item 4:
+Text: Goldtouch Elite調節可能な人間工学キーボード。 3.8 5つ星のうち3.8 (30) 価格、商品詳細ページ THB 4,013.89 THB 4,013 . 89 残り14点 ご注文はお早めに カートに入れる
+Link: https://www.amazon.co.jp/dp/B0DB6JCHCD
+
+Item 5:
+Text: LEKATOポータブルピアノキーボード 4個のマグネティックエレクトリックピアノ 88鍵 128音色 128リズム 21デモ スプリット デ
+============================================================
+
+[ANOMALY ENCOUNTERED] Search Term: '分割キーボード' | Page: 3
+Extracted Title: Razer BlackWidow Elite JP Green Switch メカニカル ゲーミングキーボード
+Raw AI Price Output: 'N/A (無価格情報)'
+Raw DOM Content Passed to AI:
+Item 1:
+Text: Womier WD75 V2 ワイヤレス メカニカルキーボード, 75%英語配列, 木製キーボード USB/2.4GHz/BT QMK/VIA対応, ラピッドトリガー ポーリングレート8000Hz対応, RGBバックライト搭載, Win/Mac用 価格、商品詳細ページ THB 3,770.31 THB 3,770 . 31 以前の価格: THB 3,992.11 以前の価格: THB 3,992.11 THB3,992.11 お届け日 7月15日 水曜日 にお届け カートに入れる
+Link: https://www.amazon.co.jp/dp/B0GLYN9FT4
+
+Item 2:
+Text: Perixx Px Ergo Mech エルゴノミクスキーボード メカニカル フルサイズ ロープロファイル 有線接続 USB Windows/Mac OS Xと互換性あり ブラック 英語配列 PERIBOARD-535 (茶軸) 4.1 5つ星のうち4.1 (330) 価格、商品詳細ページ THB 3,816.17 THB 3,816 . 17 カートに入れる
+Link: https://www.amazon.co.jp/dp/B0BLTQ7GS7
+
+Item 3:
+Text: Apos ErgoDox 76 "Hot DOX V2 Split Ergonomicメカニカルキーボード — オーソリニア、インジケーター画面、QMK/VIAファームウェア、RGB、USB-C、PBT キーキャップ、ホットスワップ(ダーク - Kailh Rose Red Switchs) 3.7 5つ星のうち3.7 (29) オプションを表示 「おすすめ出品」の要件を満たす出品はありません THB 11,574.44 （1点の新品）
+Link: https://www.amazon.co.jp/dp/B0CYV3WFTC
+
+Item 4:
+Text: Razer BlackWidow Elite JP Green Switch メカニカル ゲーミングキーボード 日本語配列 【日本正規代理店保証品】 RZ03-02620800-R3J1 ブラック 4.4 5つ星のうち4.4 (182) オプションを表示
+Link: https://www.amazon.co.jp/d
+============================================================
+
 
 === RUN RECEIPT & TELEMETRY ===
 
 --- TARGET: MECHANICAL KEYBOARD ---
 AI Modifiers Generated: ['wireless mechanical keyboard', 'gaming mechanical keyboard', 'membrane mechanical keyboard', 'mech mechanical keyboard', 'budget mechanical keyboard', 'mechanical keyboard']
-Status: Crashed (cannot use 'list' as a set element (unhashable type: 'list')).
-Execution Time: 3m 41s
-Final Unique Items Extracted: 79
+Batch 1 completed: +79 unique items.
+Batch 2 completed: +96 unique items.
+Batch 3 completed: +130 unique items.
+Status: Halted successfully (Target Quota Reached).
+Execution Time: 11m 37s
+Final Unique Items Extracted: 305
 
 --- TARGET: SPLIT KEYBOARD ---
-AI Modifiers Generated: ['ergonomic split keyboard', 'gaming split keyboard', 'mechanical split keyboard', 'budget split keyboard', 'custom split keyboard', 'split keyboard']
-Batch 1 completed: +149 unique items.
-Batch 2 completed: +80 unique items.
+AI Modifiers Generated: ['ergonomic split keyboard', 'gaming split keyboard', 'mech split keyboard', 'budget split keyboard', 'wireless split keyboard', 'split keyboard']
+Batch 1 completed: +85 unique items.
+Batch 2 completed: +114 unique items.
+Batch 3 completed: +121 unique items.
 Status: Halted successfully (Target Quota Reached).
-Execution Time: 5m 42s
-Final Unique Items Extracted: 229
+Execution Time: 9m 38s
+Final Unique Items Extracted: 320

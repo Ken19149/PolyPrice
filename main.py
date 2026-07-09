@@ -88,7 +88,7 @@ def fetch_amazon_jp_html(keyword, page_number=1):
         return html
 
 def clean_and_convert_price(raw_price, live_rates, base_currency):
-    if not isinstance(raw_price, str) or not raw_price.strip(): 
+    if not isinstance(raw_price, str) or not raw_price.strip() or raw_price.upper() == "N/A": 
         return "UNKNOWN", None, None
         
     currency = "UNKNOWN"
@@ -128,13 +128,17 @@ def parse_amazon_data(html, keyword, page_number, live_rates, base_currency):
     if not items: return []
     all_extracted_items_for_page = []
     chunk_size = 15 
+    
     for i in range(0, len(items), chunk_size):
         chunk = items[i:i+chunk_size]
         structured_text_input = ""
         for idx, item in enumerate(chunk): 
             text_content = item.get_text(separator=' ', strip=True)
             text_content = " ".join(text_content.split())
-            if len(text_content) > 300: text_content = text_content[:300] + "..."
+            
+            # Expanded character window to catch late-rendering prices
+            if len(text_content) > 800: text_content = text_content[:800] + "..."
+            
             link_tag = item.find('a', class_='a-link-normal', href=True)
             raw_link = "https://www.amazon.co.jp" + link_tag['href'] if link_tag else ""
             clean_link = "N/A"
@@ -148,8 +152,11 @@ def parse_amazon_data(html, keyword, page_number, live_rates, base_currency):
                 asin_match = re.search(r'/(?:dp|gp/product|exec/obidos/ASIN|o/ASIN)/([A-Z0-9]{10})', raw_link)
                 clean_link = f"https://www.amazon.co.jp/dp/{asin_match.group(1)}" if asin_match else raw_link.split('?')[0].split('/ref=')[0]
             structured_text_input += f"Item {idx+1}:\nText: {text_content}\nLink: {clean_link}\n\n"
+            
+        # Strict Prompt to prevent decimal hallucination
         prompt = f"""
         Extract the products into a valid JSON array of objects. Use EXACTLY these keys: "Title", "Price", "URL".
+        For "Price", extract the exact text including the currency symbol (e.g. "THB 1,714.19" or "￥12,500"). If no price is present, output "N/A".
         Data to process:
         {structured_text_input}
         """
@@ -165,10 +172,31 @@ def parse_amazon_data(html, keyword, page_number, live_rates, base_currency):
             if isinstance(extracted_data, list):
                 valid_items = []
                 for item in extracted_data:
-                    if isinstance(item, dict) and "URL" in item and item["URL"] != "N/A":
+                    
+                    # URL Crash Fix
+                    url_val = item.get("URL", "")
+                    if isinstance(url_val, list):
+                        url_val = str(url_val[0]) if len(url_val) > 0 else "N/A"
+                    else:
+                        url_val = str(url_val).strip()
+                        
+                    if url_val != "N/A" and len(url_val) > 5:
                         item["Platform"] = "Amazon JP"
                         item["Search_Term"] = keyword
-                        curr, orig_val, conv_val = clean_and_convert_price(item.get("Price", ""), live_rates, base_currency)
+                        item["URL"] = url_val
+                        
+                        raw_ai_price = str(item.get("Price", ""))
+                        curr, orig_val, conv_val = clean_and_convert_price(raw_ai_price, live_rates, base_currency)
+                        
+                        # --- ANOMALY QUARANTINE FIREWALL ---
+                        if curr == "UNKNOWN" or orig_val is None:
+                            with open("debug_log.txt", "a", encoding="utf-8") as db_file:
+                                db_file.write(f"\n[ANOMALY ENCOUNTERED] Search Term: '{keyword}' | Page: {page_number}\n")
+                                db_file.write(f"Extracted Title: {item.get('Title')}\n")
+                                db_file.write(f"Raw AI Price Output: '{raw_ai_price}'\n")
+                                db_file.write(f"Raw DOM Content Passed to AI:\n{structured_text_input[:1000]}\n")
+                                db_file.write("="*60 + "\n")
+                        
                         item["Original_Currency"] = curr
                         item["Original_Price"] = orig_val
                         item[f"Price_{base_currency}"] = conv_val
@@ -180,7 +208,6 @@ def parse_amazon_data(html, keyword, page_number, live_rates, base_currency):
     return all_extracted_items_for_page
 
 if __name__ == "__main__":
-    # Create the exports directory if it doesn't exist
     os.makedirs("exports", exist_ok=True)
 
     with open("debug_log.txt", "w", encoding="utf-8") as f:
@@ -200,9 +227,7 @@ if __name__ == "__main__":
     live_exchange_rates = fetch_live_exchange_rates(base_currency)
     session_telemetry = [] 
     
-    # Process each keyword entirely separately
     for base_item in base_items:
-        # Reset State for the new keyword
         global_unique_data = []
         seen_urls = set()
         
@@ -237,6 +262,7 @@ if __name__ == "__main__":
                 
                 for idx, (raw_html, jp_kw, p_num) in enumerate(html_payloads, 1):
                     page_data = parse_amazon_data(raw_html, jp_kw, p_num, live_exchange_rates, base_currency)
+                    
                     for item in page_data:
                         url = item.get("URL", "")
                         if url not in seen_urls and url != "N/A":
@@ -260,7 +286,7 @@ if __name__ == "__main__":
                     
                     if current_count >= target_quota: break
                 
-                print() # Newline after the progress bar finishes a batch
+                print() 
                 items_in_batch = len(global_unique_data) - start_count
                 session_telemetry.append(f"Batch {page_num} completed: +{items_in_batch} unique items.")
                 page_num += 1
@@ -275,7 +301,6 @@ if __name__ == "__main__":
         except KeyboardInterrupt:
             print(f"\n\n[!] Interruption caught (^C). Gracefully halting {base_item} pipeline...")
             session_telemetry.append("Status: Interrupted by user (^C).")
-            # We break entirely out of the keyword loop if the user presses Ctrl+C
             break
         except Exception as e:
             print(f"\n[!] Unexpected loop crash on {base_item}: {e}")
@@ -296,7 +321,6 @@ if __name__ == "__main__":
                 df = df[columns_order]
                 df.columns = [str(col).upper() for col in df.columns]
                 
-                # Dynamic File Naming inside the exports/ folder
                 safe_filename = base_item.replace(" ", "_").lower()
                 export_path = f"exports/{safe_filename}_results.csv"
                 
@@ -305,7 +329,6 @@ if __name__ == "__main__":
             else:
                 print(f"[!] Pipeline terminated for {base_item}. No valid records were extracted.\n")
 
-    # Write telemetry receipt to the debug log after ALL keywords are processed
     with open("debug_log.txt", "a", encoding="utf-8") as f:
         f.write("\n\n=== RUN RECEIPT & TELEMETRY ===\n")
         for line in session_telemetry:
