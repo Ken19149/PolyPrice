@@ -12,33 +12,42 @@ import time
 import re
 
 def generate_dynamic_modifiers(base_keyword):
+    """Uses Qwen 2.5 with explicit JSON Schema validation to generate search modifiers."""
     print(f"[*] Asking Qwen 2.5 to generate dynamic search modifiers for '{base_keyword}'...")
+    
     prompt = f"""
-    You are an e-commerce SEO engine. Generate exactly 5 single-word search modifiers for: "{base_keyword}".
-    Return ONLY a raw JSON object with the key "modifiers" containing the list.
-    Example: {{"modifiers": ["wireless", "gaming", "budget", "ergonomic", "compact"]}}
+    You are an e-commerce SEO engine. Generate exactly 5 single-word search modifiers that shoppers use when looking for: "{base_keyword}".
+    Provide attributes like style, use-case, or cost tier.
     """
+    
+    strict_schema = {
+        "type": "object",
+        "properties": {
+            "modifiers": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        },
+        "required": ["modifiers"]
+    }
     
     try:
         response = ollama.generate(
             model="qwen2.5:7b", 
             prompt=prompt, 
-            format="json",
+            format=strict_schema, 
             options={"temperature": 0.3, "num_predict": 150}
         )
         
-        # --- DEBUGGING LINE ---
         raw_text = response["response"].strip()
-        print(f"[DEBUG] Raw response from Ollama: {raw_text}")
-        # ----------------------
-            
         parsed_json = json.loads(raw_text)
         modifiers = parsed_json.get("modifiers", [])
         
         if not isinstance(modifiers, list) or len(modifiers) == 0:
             raise ValueError("Structured schema did not yield a valid population array.")
             
-        # Standardize strings to lowercase alphanumeric words
         clean_modifiers = [re.sub(r'[^a-zA-Z0-9-]', '', str(mod).lower()) for mod in modifiers[:5]]
         print(f"[*] AI Generated Modifiers: {clean_modifiers}")
         
@@ -82,6 +91,22 @@ def fetch_amazon_jp_html(keyword, page_number=1):
         elapsed = time.time() - start_time
         print(f"[Network] Downloaded '{keyword}' Page {page_number} in {elapsed:.2f}s")
         return html
+
+def clean_price_data(raw_price):
+    """Sanitizes messy Amazon price strings into clean Currency and Float values."""
+    if not isinstance(raw_price, str):
+        return "UNKNOWN", None
+        
+    currency_match = re.search(r'(THB|￥|JPY|\$)', raw_price, re.IGNORECASE)
+    currency = currency_match.group(1).upper() if currency_match else "UNKNOWN"
+    if currency == '￥': currency = 'JPY'
+    
+    num_match = re.search(r'([0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]+)?|[0-9]+(?:\.[0-9]+)?)', raw_price)
+    if num_match:
+        val = float(num_match.group(1).replace(',', ''))
+        return currency, val
+        
+    return currency, None
 
 def parse_amazon_data(html, keyword, page_number):
     """Extracts unstructured text into strictly typed dictionaries."""
@@ -166,14 +191,23 @@ def parse_amazon_data(html, keyword, page_number):
                 if isinstance(extracted_data, dict):
                     extracted_data = list(extracted_data.values())
                         
-            # STATIC DATA INJECTION FIREWALL
+            # STATIC DATA INJECTION & PRICE SANITIZATION
             if isinstance(extracted_data, list):
                 valid_items = []
                 for item in extracted_data:
                     if isinstance(item, dict) and "URL" in item and item["URL"] != "N/A":
+                        
+                        # Inject static data explicitly
                         item["Platform"] = "Amazon JP"
                         item["Search_Term"] = keyword
+                        
+                        # Apply Python RegEx cleaner to the messy AI price
+                        curr, val = clean_price_data(item.get("Price", ""))
+                        item["Currency"] = curr
+                        item["Price"] = val
+                        
                         valid_items.append(item)
+                        
                 all_extracted_items_for_page.extend(valid_items)
             
         except json.JSONDecodeError:
@@ -209,7 +243,7 @@ if __name__ == "__main__":
             target_keywords_jp = [translate_to_jp(kw) for kw in wide_keywords_en]
             
             page_num = 1
-            max_pages = 12 # Incremented slightly to allow deep pagination scaling for large quotas
+            max_pages = 12 
             
             while len(global_unique_data) < target_quota and page_num <= max_pages:
                 print(f"\n[*] --- INITIATING BATCH: PAGE {page_num} ---")
@@ -263,10 +297,16 @@ if __name__ == "__main__":
             print(f"\n[*] Launching recovery dump blocks...")
             final_data = global_unique_data[:target_quota]
             
+            # Reorder columns for a clean spreadsheet
             df = pd.DataFrame(final_data)
+            columns_order = ["Platform", "Search_Term", "Title", "Currency", "Price", "URL"]
+            # Ensure only existing columns are reordered to avoid KeyError
+            columns_order = [c for c in columns_order if c in df.columns]
+            df = df[columns_order]
+            
             df.columns = [str(col).upper() for col in df.columns]
             
             df.to_csv('PolyPrice_Results.csv', index=False, encoding='utf-8-sig')
-            print(f"[*] SUCCESS: {len(df)} perfectly unique records saved to PolyPrice_Results.csv.")
+            print(f"[*] SUCCESS: {len(df)} perfectly unique, sanitized records saved to PolyPrice_Results.csv.")
         else:
             print("\n[!] Pipeline terminated. No valid records were extracted to dump.")
