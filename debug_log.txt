@@ -1,1 +1,1 @@
-=== PolyPrice Pipeline Session Runtime Telemetry ===
+=== PolyPrice Pipeline Telemetry ===
