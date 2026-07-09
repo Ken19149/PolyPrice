@@ -5,16 +5,14 @@
 
 --- TARGET: MECHANICAL KEYBOARD ---
 AI Modifiers Generated: ['wireless mechanical keyboard', 'gaming mechanical keyboard', 'membrane mechanical keyboard', 'mech mechanical keyboard', 'budget mechanical keyboard', 'mechanical keyboard']
-Batch 1 completed: +137 unique items.
-Batch 2 completed: +84 unique items.
-Status: Halted successfully (Target Quota Reached).
-Execution Time: 6m 14s
-Final Unique Items Extracted: 221
+Status: Crashed (cannot use 'list' as a set element (unhashable type: 'list')).
+Execution Time: 3m 41s
+Final Unique Items Extracted: 79
 
 --- TARGET: SPLIT KEYBOARD ---
 AI Modifiers Generated: ['ergonomic split keyboard', 'gaming split keyboard', 'mechanical split keyboard', 'budget split keyboard', 'custom split keyboard', 'split keyboard']
-Batch 1 completed: +142 unique items.
-Batch 2 completed: +58 unique items.
+Batch 1 completed: +149 unique items.
+Batch 2 completed: +80 unique items.
 Status: Halted successfully (Target Quota Reached).
-Execution Time: 5m 57s
-Final Unique Items Extracted: 200
+Execution Time: 5m 42s
+Final Unique Items Extracted: 229

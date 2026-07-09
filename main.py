@@ -97,29 +97,23 @@ def clean_and_convert_price(raw_price, live_rates, base_currency):
     elif re.search(r'(\$|USD)', raw_price, re.IGNORECASE): currency = 'USD'
     elif re.search(r'(EUR|€)', raw_price, re.IGNORECASE): currency = 'EUR'
 
-    # Target numbers attached directly to currency symbols/words
-    match = re.search(r'(?:THB|￥|JPY|\$|USD|EUR)\s*([0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]+)?)|([0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]+)?)\s*(?:THB|￥|JPY|\$|USD|EUR|円)', raw_price, re.IGNORECASE)
+    # Strip away Japanese characters to leave only numbers and decimals
+    cleaned_string = re.sub(r'[^\d.,]', ' ', raw_price)
+    numbers = [n for n in cleaned_string.split() if re.match(r'^[0-9,.]+$', n)]
     
-    val_str = None
-    if match:
-        val_str = match.group(1) or match.group(2)
-    else:
-        # Fallback: Find the last number in the string (avoids grabbing "24 pack" at the start)
-        numbers = re.findall(r'([0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]+)?)', raw_price)
-        if numbers:
-            val_str = numbers[-1]
-
     original_val = None
     converted_val = None
     
-    if val_str:
-        try: original_val = float(val_str.replace(',', ''))
-        except ValueError: pass
+    if numbers:
+        val_str = numbers[-1].rstrip('.') # Grab the last valid number
+        try: 
+            original_val = float(val_str.replace(',', ''))
+        except ValueError: 
+            pass
             
     if original_val is not None:
-        # Default to JPY if we found a price but no currency label on an Amazon JP scrape
         if currency == "UNKNOWN":
-            currency = "JPY" 
+            currency = "JPY" # Strict Fallback to JPY
             
         if currency == base_currency: 
             converted_val = original_val
