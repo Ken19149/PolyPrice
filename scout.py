@@ -7,7 +7,7 @@ def scrape_snapshot(url, selector=None, output_path="sample.html"):
     
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            headless=True,
+            headless=False,
             args=["--disable-blink-features=AutomationControlled", "--no-sandbox"]
         )
         context = browser.new_context(
@@ -21,7 +21,7 @@ def scrape_snapshot(url, selector=None, output_path="sample.html"):
         
         try:
             page.goto(url, wait_until="domcontentloaded", timeout=45000)
-            page.wait_for_timeout(3000) 
+            page.wait_for_timeout(6000) 
             
             print("[*] Triggering lazy-loads...")
             page.evaluate("window.scrollTo(0, document.body.scrollHeight / 2);")
