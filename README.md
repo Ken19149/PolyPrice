@@ -11,7 +11,7 @@ PolyPrice V2 is divided into five distinct operational modules:
 
     agent.py (The Architect): Feeds the compressed HTML skeleton to a local qwen2.5-coder:32b model. Using strict Template Prompting, the AI writes a resilient, bug-free Python parsing function tailored perfectly to the website's CSS classes.
 
-    orchestrator.py (The Muscle): Imports the AI-generated logic and deploys a multi-threaded web fleet to rapidly scrape, parse, and export hundreds of items in seconds. Features a "God Mode" bypass that automatically intercepts and parses /products.json endpoints on Shopify-hosted storefronts.
+    orchestrator.py (The Muscle): Imports the AI-generated logic and deploys a multi-threaded web fleet to rapidly scrape, parse, and export hundreds of items in seconds. 
 
     analyze.py (The Brain): A headless data consolidation layer that unifies legacy currencies, merges fleet datasets by sector, and runs lightning-fast Jaccard Similarity tokenization to detect cross-platform pricing arbitrage anomalies.
 
@@ -50,7 +50,7 @@ JSON
   "sites": {
     "yoseka": {
       "url": "https://yosekastationery.com/products.json?limit=250&page={page}",
-      "parser": "shopify",
+      "parser": "yoseka",
       "domain": "https://yosekastationery.com"
     }
   }
