@@ -4,3 +4,7 @@ exports/
 __pycache__/
 .venv/
 .pytest_cache/
+parsers/*
+!parsers/amazon_jp.py
+!parsers/ebay.py
+registry.json

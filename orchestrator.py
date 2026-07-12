@@ -14,11 +14,22 @@ from playwright.sync_api import sync_playwright
 from playwright_stealth import Stealth
 import ollama
 
-# --- TEMPORARY SITE REGISTRY ---
-SITE_REGISTRY = {
-    "amazon_jp": "https://www.amazon.co.jp/s?k={keyword}&page={page}",
-    "ebay": "https://www.ebay.com/sch/i.html?_nkw={keyword}&_pgn={page}"
-}
+def load_registry():
+    """Safely loads target layouts and groups from external JSON matrix."""
+    default_registry = {
+        "groups": {"ecommerce": ["amazon_jp", "ebay"]},
+        "sites": {
+            "amazon_jp": "https://www.amazon.co.jp/s?k={keyword}&page={page}",
+            "ebay": "https://www.ebay.com/sch/i.html?_nkw={keyword}&_pgn={page}"
+        }
+    }
+    if os.path.exists("registry.json"):
+        try:
+            with open("registry.json", "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            print("[!] Warning: 'registry.json' corrupted. Deploying internal fallbacks.")
+    return default_registry
 
 def load_parser(site_name):
     """Dynamically loads the target site's parser from the /parsers folder."""
@@ -83,18 +94,27 @@ Return ONLY a raw JSON object. Do not use markdown backticks."""
 def translate_to_jp(keyword):
     return GoogleTranslator(source='en', target='ja').translate(keyword)
 
-def fetch_site_html(site_name, keyword, page_number=1, headless_mode=True):
-    url_template = SITE_REGISTRY.get(site_name, SITE_REGISTRY["amazon_jp"])
+def fetch_site_html(url_template, site_name, keyword, page_number=1, headless_mode=True):
     safe_keyword = urllib.parse.quote(keyword)
     url = url_template.format(keyword=safe_keyword, page=page_number)
     
-    # Introduce a slight time stagger to break up concurrent thread execution bursts
     time.sleep(page_number * 0.3)
+    
+    # --- NEW FAST-PATH FOR JSON APIs (GOD MODE) ---
+    if url.endswith(".json") or ".json?" in url:
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            response = urllib.request.urlopen(req, timeout=15)
+            return response.read().decode('utf-8')
+        except Exception as e:
+            print(f"\n    [!] API Fetch Error: {e}")
+            return ""
+    # ----------------------------------------------
     
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=headless_mode, args=["--disable-blink-features=AutomationControlled", "--no-sandbox"])
         
-        if site_name == "amazon_jp":
+        if "amazon_jp" in site_name:
             locale, tz = "ja-JP", "Asia/Tokyo"
         else:
             locale, tz = "en-US", "America/New_York"
@@ -110,7 +130,6 @@ def fetch_site_html(site_name, keyword, page_number=1, headless_mode=True):
             page.goto(url, wait_until="domcontentloaded", timeout=45000)
             page.wait_for_timeout(2000) 
             
-            # IMPLEMENTING THE REFRESH TRICK: Catch error screens or WAF blocks immediately
             if "Something went wrong on our end" in page.content() or "Error Page" in page.title():
                 print(f"\n    [!] WAF/Error detected on {site_name.upper()}. Executing reload bypass...")
                 page.reload(wait_until="domcontentloaded")
@@ -152,66 +171,66 @@ def clean_and_convert_price(raw_price, live_rates, base_currency, debug_mode=Fal
             
     return currency, orig_val, conv_val
 
-def interactive_wizard(config):
+def interactive_wizard(config, registry):
     print("\n" + "="*60)
-    print(" ⚡ POLYPRICE V2 - HYBRID AGENTIC EXTRACTOR ⚡")
+    print(" ⚡ POLYPRICE V2 - AGNOSTIC UNIVERSAL EXTRACTION ENGINE ⚡")
     print("="*60)
     print("Available CLI Arguments:")
-    print("  -k, --keywords   Comma-separated list of items")
-    print("  -n, --number     Target quota of items PER site")
-    print("  -c, --currency   Target conversion currency (e.g., USD, THB)")
-    print("  -s, --sites      Comma-separated list of sites (e.g., amazon_jp, ebay)")
-    print("  --debug          Show verbose output for missing prices")
-    print("  --visible        Run the extraction fleet with visible browser windows\n")
-    print("Example Usage:")
-    print("  python orchestrator.py -k \"fountain pen, mechanical keyboard\" -s \"amazon_jp, ebay\" -n 500 --visible\n")
+    print("  -k, --keywords   Target terms or platform path category tokens")
+    print("  -g, --group      Trigger batch profiles from directory configuration")
+    print("  -s, --sites      Explicit targeting override list")
+    print("  -n, --number     Target extraction cap size")
+    print("  -c, --currency   Target conversion code layer\n")
+    print("Configured Profiles Available: " + ", ".join(registry["groups"].keys()))
     print("-" * 60)
-    print("CURRENT DEFAULT CONFIGURATION:")
-    print(f"  Keywords: {config['keywords']}")
-    print(f"  Sites:    {config['sites']}")
-    print(f"  Quota:    {config['target_quota']} items per site")
-    print(f"  Currency: {config['base_currency']}")
+    print(f"DEFAULT CRON VALUES: Keys: {config['keywords']} | Sites: {config['sites']}")
     print("-" * 60)
 
-    choice = input("\nProceed with this default configuration? (y/n): ").strip().lower()
-    if choice == 'y' or choice == '':
-        return config
+    choice = input("\nProceed with standard run profile configurations? (y/n): ").strip().lower()
+    if choice in ['y', '']: return config
 
-    print("\n[+] Let's configure your run:")
-    k_input = input(f"Keywords (comma separated) [{','.join(config['keywords'])}]: ").strip()
+    print("\n[+] Enter Target Blueprint Parameters:")
+    g_input = input(f"Target Group Profile (Leave blank to select sites explicitly) []: ").strip()
+    if g_input in registry["groups"]:
+        config['sites'] = registry["groups"][g_input]
+    else:
+        s_input = input(f"Target Sites Override [{','.join(config['sites'])}]: ").strip()
+        if s_input: config['sites'] = [s.strip() for s in s_input.split(',')]
+
+    k_input = input(f"Target Categories/Keywords [{','.join(config['keywords'])}]: ").strip()
     if k_input: config['keywords'] = [k.strip() for k in k_input.split(',')]
 
-    s_input = input(f"Target Sites (comma separated) [{','.join(config['sites'])}]: ").strip()
-    if s_input: config['sites'] = [s.strip() for s in s_input.split(',')]
-
-    n_input = input(f"Target Quota per site [{config['target_quota']}]: ").strip()
+    n_input = input(f"Extraction Target Cap Count [{config['target_quota']}]: ").strip()
     if n_input.isdigit(): config['target_quota'] = int(n_input)
-
-    c_input = input(f"Base Currency [{config['base_currency']}]: ").strip()
-    if c_input: config['base_currency'] = c_input.upper()
 
     return config
 
 if __name__ == "__main__":
     os.makedirs("exports", exist_ok=True)
     config = load_config()
+    registry = load_registry()
     
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument('-k', '--keywords', type=str)
+    parser.add_argument('-g', '--group', type=str)
+    parser.add_argument('-s', '--sites', type=str)
     parser.add_argument('-n', '--number', type=int)
     parser.add_argument('-c', '--currency', type=str)
-    parser.add_argument('-s', '--sites', type=str)
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--visible', action='store_true')
     
     if len(sys.argv) == 1:
-        config = interactive_wizard(config)
-        args = argparse.Namespace(keywords=None, number=None, currency=None, sites=None, debug=False, visible=False)
+        config = interactive_wizard(config, registry)
+        args = argparse.Namespace(keywords=None, group=None, sites=None, number=None, currency=None, debug=False, visible=False)
+        target_sites = config["sites"]
     else:
         args, _ = parser.parse_known_args()
-    
+        if args.group and args.group in registry["groups"]:
+            target_sites = registry["groups"][args.group]
+        else:
+            target_sites = [s.strip() for s in args.sites.split(',')] if args.sites else config["sites"]
+            
     base_items = [item.strip() for item in args.keywords.split(',')] if args.keywords else config["keywords"]
-    target_sites = [s.strip() for s in args.sites.split(',')] if args.sites else config["sites"]
     target_quota = args.number if args.number else config["target_quota"]
     base_currency = args.currency.upper() if args.currency else config["base_currency"].upper()
     debug_mode = args.debug
@@ -223,19 +242,24 @@ if __name__ == "__main__":
         master_dataset = []
         global_compute_start = time.time()
         
-        print(f"\n{'='*60}")
-        print(f"[*] INITIATING MULTI-SITE EXTRACTION: {base_item.upper()}")
-        print(f"[*] Target Sites: {target_sites}")
-        print(f"[*] Quota: {target_quota} per site | Base Currency: {base_currency}")
-        print(f"{'='*60}")
+        print(f"\n{'='*60}\n[*] INITIATING EXTRACTION SECTOR: {base_item.upper()}\n[*] Fleet Assignments: {target_sites}\n{'='*60}")
         
-        # GLOBAL INTERRUPTION HANDLER - Moved to the very top of the keyword loop
         try:
-            wide_keywords_en = generate_dynamic_modifiers(base_item)
-            print(f"[*] Search Modifiers (EN): {wide_keywords_en}")
+            # Skip AI SEO modifiers if targeting God Mode APIs directly
+            if "goulet_pens" in target_sites and len(target_sites) == 1:
+                wide_keywords_en = [base_item]
+                print(f"[*] API Target Lock: Proceeding with strict nomenclature '{base_item}'")
+            else:
+                wide_keywords_en = generate_dynamic_modifiers(base_item)
+                print(f"[*] Search Modifiers (EN): {wide_keywords_en}")
             
             for site_name in target_sites:
-                print(f"\n>>> Engaging Target: {site_name.upper()} <<<")
+                if site_name not in registry["sites"]:
+                    print(f"[!] Warning: '{site_name}' missing template endpoint string in registry. Skipping.")
+                    continue
+                    
+                url_template = registry["sites"][site_name]
+                print(f"\n>>> Engaging Target Profile Matrix: {site_name.upper()} <<<")
                 
                 extract_page_data, normalize_url = load_parser(site_name)
                 
@@ -246,16 +270,16 @@ if __name__ == "__main__":
                     target_keywords = wide_keywords_en
                     
                 site_unique_data = []
-                seen_urls = set()
+                seen_keys = set()
                 page_num = 1
-                max_pages = 15 
+                max_pages = 200 # Increased max pages to safely grab full catalog databases
                 
                 while len(site_unique_data) < target_quota and page_num <= max_pages:
                     tasks = [(kw, page_num) for kw in target_keywords]
                     html_payloads = []
                     
                     with ThreadPoolExecutor(max_workers=5) as executor:
-                        future_to_task = {executor.submit(fetch_site_html, site_name, task[0], task[1], headless_mode): task for task in tasks}
+                        future_to_task = {executor.submit(fetch_site_html, url_template, site_name, task[0], task[1], headless_mode): task for task in tasks}
                         for future in future_to_task:
                             kw, p_num = future_to_task[future]
                             try: html_payloads.append((future.result(), kw, p_num))
@@ -263,78 +287,88 @@ if __name__ == "__main__":
                     
                     for raw_html, kw, p_num in html_payloads:
                         if not raw_html: continue
-                        
                         extracted_items = extract_page_data(raw_html)
 
+                        if len(extracted_items) == 0:
+                            print(f"\n    [*] Database exhausted at page {p_num}. Catalog fully mapped.")
+                            target_quota = len(site_unique_data) # Force the loop to complete gracefully
+                            break
+
                         if debug_mode: 
-                            print(f"\n    [!] Debug: Parser extracted {len(extracted_items)} items for '{kw}' on Page {p_num}")
+                            print(f"\n    [!] Debug: Parser extracted {len(extracted_items)} raw objects for '{kw}' on Page {p_num}")
                         
                         for item in extracted_items:
-                            url = normalize_url(item.get("URL", "N/A"))
+                            # Universal Key Alignment check
+                            url_key = next((k for k in item if str(k).upper() == "URL"), None)
+                            url = normalize_url(item.get(url_key, "N/A")) if url_key else "N/A"
                             
-                            if url not in seen_urls and url != "N/A":
-                                seen_urls.add(url)
+                            dup_fingerprint = url if url != "N/A" else str(item)
+                            
+                            if dup_fingerprint not in seen_keys:
+                                seen_keys.add(dup_fingerprint)
                                 
+                                # Dynamic schema mapping loop block
                                 formatted_item = {
                                     "Platform": site_name.upper(),
-                                    "Search_Term": kw,
-                                    "Title": item.get("Title", "N/A").replace('\n', ' ').strip(),
-                                    "URL": url
+                                    "Search_Term": kw
                                 }
                                 
-                                raw_price = str(item.get("Price", ""))
-                                curr, orig_val, conv_val = clean_and_convert_price(raw_price, live_exchange_rates, base_currency, debug_mode)
+                                for key, value in item.items():
+                                    if str(key).upper() == "PRICE" and value != "N/A":
+                                        curr, orig_val, conv_val = clean_and_convert_price(str(value), live_exchange_rates, base_currency, debug_mode)
+                                        formatted_item["Original_Currency"] = curr
+                                        formatted_item["Original_Price"] = orig_val
+                                        formatted_item[f"Price_{base_currency}"] = conv_val
+                                    else:
+                                        formatted_item[key] = value
                                 
-                                formatted_item["Original_Currency"] = curr
-                                formatted_item["Original_Price"] = orig_val
-                                formatted_item[f"Price_{base_currency}"] = conv_val
-                                
+                                if url_key:
+                                    formatted_item["URL"] = url
+                                    
                                 site_unique_data.append(formatted_item)
                                 
-                        # ETA CALCULATIONS RESTORED
                         current_count = len(site_unique_data)
                         elapsed_time = time.time() - global_compute_start
                         sec_per_item = elapsed_time / current_count if current_count > 0 else 0
                         eta_seconds = (target_quota - current_count) * sec_per_item
                             
                         eta_mins, eta_secs = divmod(int(eta_seconds), 60)
-                        bar_len = 20
-                        filled = int(bar_len * min(current_count, target_quota) // target_quota)
-                        bar = '█' * filled + '░' * (bar_len - filled)
-                        percent = (min(current_count, target_quota) / target_quota) * 100
-                        
-                        print(f"\r[Progress] {bar} {percent:.1f}% | {current_count}/{target_quota} Items | ETA: {eta_mins:02d}m {eta_secs:02d}s", end="")
+                        bar = '█' * int(20 * min(current_count, target_quota) // target_quota) + '░' * (20 - int(20 * min(current_count, target_quota) // target_quota))
+                        print(f"\r[Progress] {bar} {(min(current_count, target_quota) / target_quota) * 100:.1f}% | {current_count}/{target_quota} Rows | ETA: {eta_mins:02d}m {eta_secs:02d}s", end="")
                         
                         if current_count >= target_quota: break
-                    
                     if current_count >= target_quota: break
                     page_num += 1
 
-                print(f"\n[*] {site_name.upper()} extraction complete.")
+                print(f"\n[*] {site_name.upper()} category segment extraction complete.")
                 master_dataset.extend(site_unique_data[:target_quota])
 
         except KeyboardInterrupt:
-            print(f"\n\n[!] Interruption caught (^C). Gracefully halting {base_item} pipeline...")
-            # If interrupted, make sure we save whatever was collected for the current site
+            print(f"\n\n[!] Interruption caught (^C). Gracefully closing pipes and packing dataset tracking streams...")
             master_dataset.extend(site_unique_data)
-            
+
         finally:
             total_time = time.time() - global_compute_start
             mins, secs = divmod(int(total_time), 60)
-            print(f"[*] Extraction Time: {mins}m {secs}s")
+            print(f"[*] Total Sector Run Execution Time: {mins}m {secs}s")
 
             if master_dataset:
                 df = pd.DataFrame(master_dataset)
                 
-                # COLUMN ORDERING AND CAPITALIZATION RESTORED
-                columns_order = ["Platform", "Search_Term", "Title", "Original_Currency", "Original_Price", f"Price_{base_currency}", "URL"]
-                columns_order = [c for c in columns_order if c in df.columns]
-                df = df[columns_order]
+                # Dynamically arrange column pillars to support infinite schema mutations safely
+                left_anchors = ["Platform", "Search_Term"]
+                right_anchors = ["URL"] if "URL" in df.columns else []
+                financial_matrix = ["Original_Currency", "Original_Price", f"Price_{base_currency}"]
+                financial_matrix = [f for f in financial_matrix if f in df.columns]
+                
+                custom_extracted_fields = [f for f in df.columns if f not in left_anchors + right_anchors + financial_matrix]
+                
+                ordered_blueprint = left_anchors + custom_extracted_fields + financial_matrix + right_anchors
+                df = df[[col for col in ordered_blueprint if col in df.columns]]
                 df.columns = [str(col).upper() for col in df.columns]
                 
                 safe_filename = base_item.replace(" ", "_").lower()
                 export_path = f"exports/{safe_filename}_master.csv"
                 
-                # UTF-8-SIG RESTORED
                 df.to_csv(export_path, index=False, encoding='utf-8-sig')
-                print(f"[*] SUCCESS: {len(df)} perfectly unique records saved to {export_path}.\n")
+                print(f"[*] SUCCESS: {len(df)} entries successfully committed to archive folder -> {export_path}.\n")
